@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".spo2.SPo2CaptureActivity"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:id="@+id/toolbar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="?attr/actionBarSize"-->
+<!--            android:background="?attr/colorPrimary"-->
+<!--            app:title="Spo2 Readings"-->
+<!--            app:navigationIcon="@drawable/back"-->
+<!--            app:popupTheme="@style/AppTheme.PopupOverlay" />-->
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:background="@color/colorPrimary">
+            <ImageView
+                android:id="@+id/imageview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/back"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true">
+
+            </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:text="Spo2 Readings"></TextView>
+        </RelativeLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="MyCare"
+            android:visibility="gone"
+            style="@style/TextAppearance.AppCompat.Display2"/>
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pulse OxiMeter"
+            style="@style/TextAppearance.AppCompat.Medium"/>
+        <TextView
+            android:id="@+id/patientName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Place the finger in the clip in OxiMeter and press the white button to start. Once you see the measuring click on the below CONNECT button to record the record the reading in the app"
+            style="@style/TextAppearance.AppCompat.Caption"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:id="@+id/connectionOxiButton"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginTop="20dp"
+            android:textColor="#fff"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/colorPrimary"
+            android:text="CONNECT"
+            android:onClick="onConnectClicked"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/spoeReadingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:gravity="top"
+        android:visibility="gone">
+    <LinearLayout
+        android:id="@+id/oxiLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+            android:layout_margin="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:text="SP02"/>
+        <TextView
+            android:id="@+id/spo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="50sp"
+            android:textColor="@android:color/holo_red_dark"
+            android:text="00"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_margin="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:text="Pulse"/>
+            <TextView
+                android:id="@+id/pulse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="50sp"
+                android:textColor="@android:color/holo_blue_dark"
+                android:text="00"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+        <Button
+            android:id="@+id/saveOxiDataButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/oxiLayout"
+            android:layout_centerInParent="true"
+            android:background="@color/nordicGrass"
+            android:text="Save" />
+    </RelativeLayout>
+
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/fab"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="bottom|end"-->
+<!--        android:layout_margin="@dimen/fab_margin"-->
+<!--        app:srcCompat="@android:drawable/ic_popup_sync" />-->
+
+</LinearLayout>

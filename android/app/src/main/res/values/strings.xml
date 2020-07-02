@@ -1,0 +1,82 @@
+<resources>
+    <string name="app_name">MyCare-Patient</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_connection">ConnectionActivity</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="title_activity_dash_board">DashBoardActivity</string>
+    <string name="title_activity_weight_measure">WeightMeasureActivity</string>
+    <string name="title_activity_bpmonitor">BPMonitorActivity</string>
+
+
+    <!--    BPM-->
+    <string name="bpm_feature_title">BPM</string>
+
+    <string name="bpm_feature_title_long">BLOOD PRESSURE</string>
+    <dimen name="bpm_feature_title_long_margin">-115dp</dimen>
+
+    <string name="bpm_section_bp_header">BLOOD PRESSURE</string>
+    <string name="bpm_systolic">SYSTOLIC</string>
+    <string name="bpm_diastolic">DIASTOLIC</string>
+    <string name="bpm_mean_ap">MEAN AP</string>
+    <string name="bpm_unit_mmhg">mmHg</string>
+    <string name="bpm_unit_kpa">kPa</string>
+
+    <string name="bpm_section_pulse_header">PULSE RATE</string>
+    <string name="bpm_pulse">PULSE</string>
+    <string name="bpm_unit_bpm">bpm</string>
+
+    <string name="bpm_section_timestamp_header">TIME &amp; DATE</string>
+    <string name="bpm_section_observation">Final Observation</string>
+    <string name="bpm_timestamp">%1$tT %1$te.%1$tm.%1$tY</string>
+
+    <string name="bpm_default_name">DEFAULT BPM</string>
+
+    <string name="bpm_about_text">BPM (Blood Pressure Monitor) profile allows you to connect to your Blood Pressure device.
+        It supports the cuff pressure notifications and displays systolic, diastolic and mean arterial pulse values as well as the pulse after blood pressure reading is completed.
+        The implementation supports bondable devices.</string>
+
+    <string name="makesure">Make sure you press the bluetooth button on the BP Monitor and click on the CONNECT Button below</string>
+
+    <string name="battery">%d%%</string>
+    <string name="not_available">n/a</string>
+    <string name="not_available_value">" - "</string>
+    <string name="no_ble">Device doesn\'t have BLE support!</string>
+    <string name="no_apps">No profiles found.</string>
+
+
+    <string name="measure_page_level_highnormal">High Normal</string>
+    <string name="measure_page_level_mild">Mild</string>
+    <string name="measure_page_level_moderate">Moderate</string>
+    <string name="measure_page_level_normal">Normal</string>
+    <string name="measure_page_level_optimal">Optimal</string>
+    <string name="measure_page_level_severe">Severe</string>
+    <string name="measure_page_pulse_level_high">Hi</string>
+    <string name="measure_page_pulse_level_low">Lo</string>
+    <string name="measure_page_record_dia">DIA</string>
+    <string name="measure_page_record_pul">Pulse</string>
+    <string name="measure_page_record_sys">SYS</string>
+    <string name="measure_page_title_doing">Measuring</string>
+    <string name="measure_page_title_doing_desc">Please do not move or speak</string>
+    <string name="measure_page_title_done">Measurement Completed</string>
+    <string name="measure_page_title_err">Error</string>
+    <string name="measure_page_title_error">Measurement error</string>
+    <string name="measure_page_title_error_code">Error code:</string>
+    <string name="measure_page_title_error_desc">Message</string>
+    <string name="measure_page_unit_bpm">(bpm):</string>
+    <string name="measure_page_unit_kpa">(kPa):</string>
+    <string name="measure_page_unit_mmhg">(mmHg):</string>
+    <string name="title_activity_bpmresult">BPMResultActivity</string>
+    <string name="title_activity_main_menu">MainMenuActivity</string>
+    <string name="title_activity_data_collection">DataCollectionActivity</string>
+
+</resources>
+
+

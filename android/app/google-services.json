@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "571560287628",
+    "firebase_url": "https://networks-dd28b.firebaseio.com",
+    "project_id": "networks-dd28b",
+    "storage_bucket": "networks-dd28b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:571560287628:android:c114f51b18dfecc8780aa9",
+        "android_client_info": {
+          "package_name": "com.remotecare.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "571560287628-sd81s9nsl4p795mmnha6hfsotipq44r0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.remotecare.app",
+            "certificate_hash": "4e87160fc4588760173e58bf8509f645288031f1"
+          }
+        },
+        {
+          "client_id": "571560287628-q8g2l80fvii8bt1pgc82hi8e29buhpgc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCRBl0ZAjBkFck-EEl90ZFW0vBJ2WI-ZA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "571560287628-q8g2l80fvii8bt1pgc82hi8e29buhpgc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

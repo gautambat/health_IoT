@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Theme applied to the Android Window while the process is starting -->
+
     <style name="LaunchTheme" parent="@android:style/Theme.Black.NoTitleBar">
         <!-- Show a splash screen on the activity. Automatically removed when
              Flutter draws its first frame -->
@@ -10,9 +10,49 @@
          This theme determines the color of the Android Window while your
          Flutter UI initializes, as well as behind your Flutter UI while its
          running.
-         
+
          This Theme is only used starting with V2 of Flutter's Android embedding. -->
     <style name="NormalTheme" parent="@android:style/Theme.Black.NoTitleBar">
         <item name="android:windowBackground">@android:color/white</item>
     </style>
+<!-- Base application theme. -->
+<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!-- Customize your theme here. -->
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorPrimary</item>
+</style>
+
+<style name="AppTheme.NoActionBar">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+</style>
+
+<style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+<style name="Widget" />
+
+<style name="Widget.List">
+    <item name="android:background">@color/backgroundColor</item>
+    <item name="android:gravity">center_horizontal</item>
+</style>
+
+<style name="Widget.ListTitle">
+    <item name="android:background">@color/headerBackgroundColor</item>
+    <item name="android:textColor">@color/headerTextColor</item>
+    <item name="android:gravity">center</item>
+</style>
+
+<style name="ConnectTheme" parent="ThemeOverlay.MaterialComponents">
+    <item name="colorPrimary">@color/black</item>
+    <item name="android:colorAccent">@color/white</item>
+</style>
+
+<style name="Widget.Connect" parent="@style/Widget.MaterialComponents.Button">
+    <item name="theme">@style/ConnectTheme</item>
+    <item name="android:minWidth">200dp</item>
+    <item name="android:minHeight">52dp</item>
+</style>
 </resources>
