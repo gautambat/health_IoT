@@ -1,10 +1,4 @@
-/*
-*  base_state.dart
-*  Remote Care - Handover
-*
-*  Created by Yakub Pasha.
-*  Copyright © 2018 Remote Care. All rights reserved.
-    */
+
 import 'dart:io';
 
 import 'package:after_layout/after_layout.dart';
