@@ -31,7 +31,7 @@ public class UnitUtil {
     }
 
     private void setUnitType() {
-        if (!isMMHG()) { //TODO
+        if (!isMMHG()) {
             unitTypeScale = 75.0f;
             f74df = new DecimalFormat("##0.0");
             return;
