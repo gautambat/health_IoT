@@ -10,7 +10,6 @@ import 'package:remote_care/constants/radii.dart';
 import 'package:remote_care/constants/strings.dart';
 import 'package:remote_care/constants/styles.dart';
 import 'package:remote_care/models/bp_record.dart';
-import 'package:remote_care/models/glucose_record.dart';
 import 'package:remote_care/models/pulse_record.dart';
 import 'package:remote_care/models/spo2_record.dart';
 import 'package:remote_care/models/temp_record.dart';
@@ -26,17 +25,13 @@ class PatientReadingValuesScreen extends StatefulWidget {
   final List<BPRecord> bpRecords;
   final List<Spo2Record> spo2Records;
   final List<PulseRecord> pulseRecords;
-  final List<GlucoseRecord> glucoseRecords;
   final List<TempRecord> tempRecords;
-  final bool isHistoryScreen;
 
   PatientReadingValuesScreen({this.user,this.clickedValue,
     this.bpRecords,
     this.spo2Records,
     this.pulseRecords,
-    this.glucoseRecords,
     this.tempRecords,
-    this.isHistoryScreen =false
   });
 
   @override
@@ -94,8 +89,8 @@ class _PatientReadingValuesScreenState
 
   @override
   getAppBar() {
-    return getAppBarWidgets(title: widget.isHistoryScreen?Titles.HISTORY:Titles.READINGS, leftWidget: IconButton(
-      icon: Icon(Icons.arrow_back),
+    return getAppBarWidgets(title: Titles.READINGS, leftWidget: IconButton(
+      icon: Icon(Icons.arrow_back, color: Colors.white,),
       onPressed: () {
         pop();
       },
@@ -207,22 +202,9 @@ class _PatientReadingValuesScreenState
                             borderRadius: Radii.k4pxRadius,
                           ),
                           height: 60.0,
-//        decoration: BoxDecoration(
-//          color: AppColors.primaryElement,
-//          border: Border.all(width: 0.2),
-//          borderRadius: BorderRadius.all(Radius.circular(6)),
-//        ),
                           child: getTextField(label:Labels.PULSEHINT, controller:store.pulseFromDeviceController, type:TextInputType.number,onChange: (value){
                             store.onPulseFromDeviceChanged();
                           }),)),
-//            emptySpo2?Container(
-//              alignment: Alignment.topLeft,
-//              margin: EdgeInsets.only(top:5,bottom:5,left: 10.0),
-//              child: Text(
-//                emptySpo2?"Please enter value":"",
-//                style: BaseStyles.errorTextStyle,
-//              ),
-//            ):Container(),
                     ]),
         Flexible(child:Align(
             alignment: Alignment.bottomCenter,
@@ -240,43 +222,6 @@ class _PatientReadingValuesScreenState
     ),
         )],
             );
-  }
-
-  glucoseTabBarView() {
-    return Observer(
-        builder: (_) =>
-            Column(
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: <Widget>[
-
-
-                      getTextField(label:Labels.GLUCOSEHINTBEFORE, controller:store.glucoseController, type:TextInputType.number,formatters:inputFormatters,onChange: (value){
-                        store.glucoseChanged();
-                      }),
-
-                      getTextField(label:Labels.GLUCOSEHINTAFTER, controller:store.glucoseAfterMealControllr, type:TextInputType.number,formatters:inputFormatters,onChange: (value){
-                        store.glucoseChanged();
-                      })
-
-
-                    ]),
-        Flexible(child:Align(
-            alignment: Alignment.bottomCenter,
-            child: CustomButton(
-                          title: Titles.SAVE,
-                          color:(!store.emptyGlucose ||!store.emptyAfterGlucose)
-                              ? AppColors.accentText
-                              : AppColors.secondaryBackground,
-                          onPressed: () {
-                            (store.emptyGlucose ||store.emptyAfterGlucose)  ? store.glucoseClicked(uid,context) : "";
-                            hideKeyboard();
-                          },
-                        ))),
-              ],
-            ));
   }
 
   tempTabBarView() {
@@ -312,11 +257,13 @@ class _PatientReadingValuesScreenState
   getContentWidgets(){
 
     return <Widget>[
-      pulseTabBarView(),
       bpTabBarView(),
       spO2TabBarView(),
-      glucoseTabBarView(),
-      tempTabBarView()
+      tempTabBarView(),
+      pulseTabBarView(),
+
+
+
     ];
   }
 
@@ -326,32 +273,29 @@ class _PatientReadingValuesScreenState
 
       Expanded(
           flex:0.5.toInt(),
-          child:Visibility(
-            visible: !widget.isHistoryScreen,
-            child: InkWell(
-            onTap: () async {
+          child:InkWell(
+          onTap: () async {
 
-              locationEnabled();
+            locationEnabled();
 
 
 
 
-            },
-            child: Container(
-                color: AppColors.secondaryBackground,
-                child: Container(
-                    margin: EdgeInsets.all(10),
-                    child: Row(children: <Widget>[
-                      Expanded(flex: 9, child: Text(
-                        "Take Reading With device",
-                        textAlign: TextAlign.left,
-                        style: BaseStyles.appTitleTextStyle,)),
-                      Expanded(flex: 1, child:Icon(Icons.keyboard_arrow_right)
-                      ),
-                    ],))
-            )
-      ),
+          },
+          child: Container(
+              color: AppColors.secondaryBackground,
+              child: Container(
+                  margin: EdgeInsets.all(10),
+                  child: Row(children: <Widget>[
+                    Expanded(flex: 9, child: Text(
+                      "Take Reading With device",
+                      textAlign: TextAlign.left,
+                      style: BaseStyles.appTitleTextStyle,)),
+                    Expanded(flex: 1, child:Icon(Icons.keyboard_arrow_right, color: Colors.white)
+                    ),
+                  ],))
           )
+      )
       ),
       Expanded(flex:9.5.toInt(),child:Container(
           color: AppColors.secondaryBackground,
@@ -364,7 +308,7 @@ class _PatientReadingValuesScreenState
                   width: double.infinity,
                   child: DefaultTabController(
                     initialIndex: clickedValue,
-                    length: 5,
+                    length: 4,
                     child: Scaffold(
                         resizeToAvoidBottomInset: false,
                         resizeToAvoidBottomPadding: false,
@@ -402,15 +346,7 @@ class _PatientReadingValuesScreenState
                                             },
 
                                             tabs: [
-                                              Container(
-                                                  height: 40.0,
-                                                  child: new Tab(
-                                                    child: Container(
-                                                      child: Text(
-                                                        TabTitle.PULSE,
-                                                        textAlign: TextAlign.left,),
-                                                    ),
-                                                  )),
+
                                               Container(
                                                 height: 40.0,
                                                 child: new Tab(
@@ -436,22 +372,21 @@ class _PatientReadingValuesScreenState
                                                 child: new Tab(
                                                     child: Container(
                                                       child: Text(
-                                                        TabTitle.GLUCOSE,
-                                                        textAlign: TextAlign.left,
-                                                      ),
-                                                    )),
-                                              ),
-                                              Container(
-                                                height: 40.0,
-                                                child: new Tab(
-                                                    child: Container(
-                                                      child: Text(
                                                         TabTitle.TEMP,
                                                         textAlign: TextAlign.left,
                                                       ),
                                                     )
                                                 ),
                                               ),
+                                              Container(
+                                                  height: 40.0,
+                                                  child: new Tab(
+                                                    child: Container(
+                                                      child: Text(
+                                                        TabTitle.PULSE,
+                                                        textAlign: TextAlign.left,),
+                                                    ),
+                                                  )),
 
                                             ],
                                           ),

@@ -8,7 +8,6 @@ import 'package:mobx/mobx.dart';
 import 'package:remote_care/constants/colors.dart';
 import 'package:remote_care/constants/styles.dart';
 import 'package:remote_care/models/bp_record.dart';
-import 'package:remote_care/models/glucose_record.dart';
 import 'package:remote_care/models/pulse_record.dart';
 import 'package:remote_care/models/spo2_record.dart';
 import 'package:remote_care/models/temp_record.dart';
@@ -28,7 +27,6 @@ abstract class DoctorPatientViewScreenStoreBase with Store,StoreMixin{
   List<Spo2Record> spo2Records =new List();
   List<PulseRecord> pulseRecords =new List();
   List<TempRecord> tempRecords =new List();
-  List<GlucoseRecord> glucoseRecord =new List();
 
   String secondText="";
 
@@ -37,17 +35,15 @@ abstract class DoctorPatientViewScreenStoreBase with Store,StoreMixin{
 
 
 
-  recordImageClicked({@required int clickedValue,bool isHistory=false,Function push,User user}) {
+  recordImageClicked({@required int clickedValue,Function push,User user}) {
 
     push(PatientReadingValuesScreen(
       user:user,
       clickedValue:clickedValue,
       bpRecords: bpRecords,
       spo2Records: spo2Records,
-      glucoseRecords: glucoseRecord,
       pulseRecords: pulseRecords,
       tempRecords: tempRecords,
-      isHistoryScreen: isHistory,
     ));
 
   }
@@ -163,34 +159,7 @@ abstract class DoctorPatientViewScreenStoreBase with Store,StoreMixin{
 //     "Failed to Invoke: '${e.message}'."
     }
   }
-  void getValuesGlucose(List<GlucoseRecord> data, List<Widget> widgets) {
 
-    if(data.length >=3){
-      widgets.add(Expanded(flex:2.33.toInt(),child:getValue("glucose",data[0].colorCodeBeforeMeal+"/"+data[0].colorCodeAfterMeal,data[0].beforeMeal.toString()+"/"+data[0].afterMeal.toString(),Jiffy.unix(data[0].recordedTime.millisecondsSinceEpoch).format('dd/MM•HH.mm'))));
-      widgets.add(Expanded(flex:2.33.toInt(),child:getValue("glucose",data[1].colorCodeBeforeMeal+"/"+data[1].colorCodeAfterMeal,data[1].beforeMeal.toString()+"/"+data[1].afterMeal.toString(),Jiffy.unix(data[1].recordedTime.millisecondsSinceEpoch).format('dd/MM•HH.mm'))));
-      widgets.add(Expanded(flex:2.33.toInt(),child:getValue("glucose",data[2].colorCodeBeforeMeal+"/"+data[2].colorCodeAfterMeal,data[2].beforeMeal.toString()+"/"+data[2].afterMeal.toString(),Jiffy.unix(data[2].recordedTime.millisecondsSinceEpoch).format('dd/MM•HH.mm'))));
-
-    }
-    else if(data.length == 2){
-      widgets.add(Expanded(flex:2.33.toInt(),child:getValue("glucose",data[0].colorCodeBeforeMeal+"/"+data[0].colorCodeAfterMeal,data[0].beforeMeal.toString()+"/"+data[0].afterMeal.toString(),Jiffy.unix(data[0].recordedTime.millisecondsSinceEpoch).format('dd/MM•HH.mm'))));
-      widgets.add(Expanded(flex:2.33.toInt(),child:getValue("glucose",data[1].colorCodeBeforeMeal+"/"+data[1].colorCodeAfterMeal,data[1].beforeMeal.toString()+"/"+data[1].afterMeal.toString(),Jiffy.unix(data[1].recordedTime.millisecondsSinceEpoch).format('dd/MM•HH.mm'))));
-      widgets.add(Expanded(flex:2.33.toInt(),child: getValue("","","--","--/--.--.--")));
-
-    }
-    else if(data.length == 1){
-      widgets.add(Expanded(flex:2.33.toInt(),child:getValue("glucose",data[0].colorCodeBeforeMeal+"/"+data[0].colorCodeAfterMeal  ,data[0].beforeMeal.toString()+"/"+data[0].afterMeal.toString(),Jiffy.unix(data[0].recordedTime.millisecondsSinceEpoch).format('dd/MM•HH.mm'))));
-      widgets.add( Expanded(flex:2.33.toInt(),child: getValue("","","--","--/--.--.--")));
-      widgets.add( Expanded(flex:2.33.toInt(),child: getValue("","","--","--/--.--.--")));
-
-    }
-
-    else if(data.length == 0){
-      widgets.add(Expanded(flex:2.33.toInt(),child: getValue("","","--","--/--.--.--")));
-      widgets.add(Expanded(flex:2.33.toInt(),child: getValue("","","--","--/--.--.--")));
-      widgets.add(Expanded(flex:2.33.toInt(),child: getValue("","","--","--/--.--.--")));
-    }
-
-  }
   void getValuesPulse(List<PulseRecord> data, List<Widget> widgets) {
 
     if(data.length >=3){

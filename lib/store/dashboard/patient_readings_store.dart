@@ -10,7 +10,6 @@ import 'package:remote_care/constants/strings.dart';
 import 'package:remote_care/database/firestore/record_dao.dart';
 import 'package:remote_care/database/firestore/user_dao.dart';
 import 'package:remote_care/models/bp_record.dart';
-import 'package:remote_care/models/glucose_record.dart';
 import 'package:remote_care/models/pulse_record.dart';
 import 'package:remote_care/models/spo2_record.dart';
 import 'package:remote_care/models/temp_record.dart';
@@ -346,46 +345,7 @@ spo2Changed() {
 
 
   }
-  @action
-  Future<void> glucoseClicked(String uid,BuildContext context) async {
 
-    String userId= user.uId;
-//    if (uid != null) {
-//      userId = uid;
-//    }
-//    else {
-//      User user = Provider.of<User>(context, listen: false);
-//      userId = user.uid;
-//    }
-    emptyGlucose = false;
-    emptyAfterGlucose = false;
-
-
-    int glucoseValue = int.parse(glucoseController.text);
-      int afterGlucoseValue = int.parse(glucoseAfterMealControllr.text);
-
-        GlucoseRecord glucoseRecord = new GlucoseRecord();
-
-        glucoseRecord.beforeMeal = num.parse(glucoseController.text);
-        glucoseRecord.afterMeal = num.parse(glucoseAfterMealControllr.text);
-        glucoseRecord.isManual = true;
-        glucoseRecord.deviceId = deviceId;
-        glucoseRecord.recordedTime = Timestamp.now();
-        await RecordDao(uid: userId).addGlucoseRecord(glucoseRecord).then((Value) {
-          saveShowDlg(ErrorMessages.GLUCOSE_DETAILS_SAVED, context);
-
-          glucoseController.text = "";
-          glucoseAfterMealControllr.text = "";
-
-
-
-        });
-
-
-
-
-
-  }
 
 @action
 Future<void> deviceValuesReading(int selectedTab) async {
@@ -480,8 +440,6 @@ Future<void> deviceValuesReading(int selectedTab) async {
       type = TabTitle.BP;
     else if(clickedValue ==Constants.PULSE)
       type = TabTitle.PULSE;
-    else if(clickedValue ==Constants.GLUCOSE)
-      type = TabTitle.GLUCOSE;
     else if(clickedValue ==Constants.TEMP)
       type = TabTitle.TEMP;
     else if(clickedValue ==Constants.SPO2)

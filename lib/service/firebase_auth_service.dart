@@ -52,6 +52,7 @@ class FirebaseAuthService {
     return _firebaseAuth.signOut();
   }
   Future sendOTP(String mobileNumber,onCodeSent,onError) async{
+    print('send');
     await _firebaseAuth.verifyPhoneNumber(
         phoneNumber: mobileNumber,
         timeout: const Duration(seconds: 5),

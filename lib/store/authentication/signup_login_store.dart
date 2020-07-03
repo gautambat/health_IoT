@@ -57,26 +57,32 @@ abstract class SignUpLoginStoreBase with Store, StoreMixin {
   List<String> roleList =[Constants.PATIENT,Constants.ADMIN];
   @action
   onContinueTapped(Function pushScreen,BuildContext context, adminList) async {
+    print(1);
     this.context=context;
     this.push = pushScreen;
     mobileNumber = phoneNumberController.text;
     if (phoneNumberController.text.isEmpty) {
+      print(2);
       errorMessage = ErrorMessages.EMPTY_MOBILE;
       return;
     } else if (phoneNumberController.text.length < 10) {
+      print(3);
       errorMessage = ErrorMessages.INVALID_MOBILE;
       return;
     }
 
     else if (!(phoneNumberController.text.toString()[0] == '6' || phoneNumberController.text.toString()[0] == '7' || phoneNumberController.text.toString()[0] == '8' || phoneNumberController.text.toString()[0] == '9')) {
+      print(4);
       errorMessage = ErrorMessages.INVALID_MOBILE;
       return;
     }
     else if(currentSelectedRole==null){
+      print(5);
       errorMessage = ErrorMessages.ROLE_SELECT_ERROR;
       return;
     }
     else if(currentSelectedRole == Constants.ADMIN) {
+      print(6);
       //print(adminList);
       int i, cond = 0;
       for(i = 0; i < adminList.length; i++) {
@@ -96,6 +102,7 @@ abstract class SignUpLoginStoreBase with Store, StoreMixin {
       }
     }
     else if (!isLoginScreen) {
+      print(7);
       showProgress(context);
       sendOTP(mobileNumber, onCodeSent, onError);
       /*await UserDao().getUserByMobile(mobileNumber).then((value) {
@@ -108,9 +115,11 @@ abstract class SignUpLoginStoreBase with Store, StoreMixin {
         }
       });*/
     } else {
+      print(8);
       if(await Utils.instance.isInternetConnected() ){
       //  if (Constants.IS_DOCTOR) {
         if (Constants.ADMIN==currentSelectedRole || Constants.PATIENT==currentSelectedRole) {
+          print(9);
           //doctor login
           var mobileNumberCheck = selectedCountryCode + phoneNumberController.text;
           sendOTP(mobileNumber, onCodeSent, onError);
@@ -147,6 +156,7 @@ abstract class SignUpLoginStoreBase with Store, StoreMixin {
   sendOTP(mobileNumber, onCodeSent, onError) async {
     showProgress(context);
     mobileNumber = selectedCountryCode + " " + phoneNumberController.text;
+    print(mobileNumber);
     await FirebaseAuthService().sendOTP(mobileNumber, onCodeSent, onError);
   }
 
@@ -171,6 +181,7 @@ value.role=role;
 
   onError(AuthException error) {
     hideProgress(context);
+    print(error.message);
     errorMessage = error.toString();
     switch (error.code) {
       case ErrorMessages.verifyPhoneNumberError:

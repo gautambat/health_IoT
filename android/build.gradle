@@ -16,19 +16,7 @@ buildscript {
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
-        maven {
-            url "http://35.234.214.192:8081/artifactory/sanketlife-sdk-release"
-            credentials {
-                username = "${sanketlife_sdk_username}"
-                password = "${sanketlife_sdk_key}"
-            }
-        }
-    }
-}
+
 
 rootProject.buildDir = '../build'
 subprojects {

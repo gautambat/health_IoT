@@ -6,7 +6,6 @@
 -keep class io.flutter.**  { *; }
 -keep class io.flutter.plugins.**  { *; }
 -keep class com.google.firebase.** { *; }
--keep class io.agora.** { *; }
 -ignorewarnings
 -keep class * {
     public private *;

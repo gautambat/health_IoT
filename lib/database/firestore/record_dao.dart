@@ -2,7 +2,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:remote_care/constants/strings.dart';
 import 'package:remote_care/models/bp_record.dart';
-import 'package:remote_care/models/glucose_record.dart';
 import 'package:remote_care/models/pulse_record.dart';
 import 'package:remote_care/models/spo2_record.dart';
 import 'package:remote_care/models/temp_record.dart';
@@ -67,19 +66,12 @@ class RecordDao{
     builder: (data, documentId) => Spo2Record.fromMap(data:data, documentID: documentId),
     sort: (lhs, rhs) => lhs.recordedTime.toDate().isBefore(rhs.recordedTime.toDate())?1:-1,
   );
-  Stream<List<GlucoseRecord>> collectionStreamGlucose() => _service.collectionStream(
-    path: FirestorePath.records(uid,CollectionType.GLUCOSE),
-    builder: (data, documentId) => GlucoseRecord.fromMap(data, documentId),
-    sort: (lhs, rhs) => lhs.recordedTime.toDate().isBefore(rhs.recordedTime.toDate())?1:-1,
-  );
 
 
 
   /// insertion of Document for individual Metric
   ///
-  Future<void> addGlucoseRecord(GlucoseRecord content) async{
-    _service.setData(path: FirestorePath.records(uid,CollectionType.GLUCOSE),data:content.toJson(),isAutoDocId: true);
-  }
+
 
   Future<void> addBPRecord(BPRecord content) async{
     _service.setData(path: FirestorePath.records(uid,CollectionType.BP),data:content.toJson(),isAutoDocId: true);

@@ -90,9 +90,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:20.2.0'
     implementation 'com.google.firebase:firebase-inappmessaging-display:18.0.2'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
-    implementation ("com.agatsa:sanketlife:4.0.2@aar") {
-        transitive = true
-    }
+
 }
 apply plugin: 'io.fabric'
 apply plugin: 'com.google.gms.google-services'

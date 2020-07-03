@@ -10,7 +10,6 @@ import 'package:remote_care/constants/values.dart';
 import 'package:remote_care/database/firestore/record_dao.dart';
 import 'package:remote_care/database/firestore/user_dao.dart';
 import 'package:remote_care/models/bp_record.dart';
-import 'package:remote_care/models/glucose_record.dart';
 import 'package:remote_care/models/pulse_record.dart';
 import 'package:remote_care/models/spo2_record.dart';
 import 'package:remote_care/models/temp_record.dart';
@@ -43,7 +42,6 @@ class _DashboardScreenState extends BaseState<DashboardScreen> {
   LocalStorage storage = new LocalStorage('cure_squad');
   User user;
   String differenceInYears="";
-  List<GlucoseRecord> glucoseRecord =new List();
   var pushToken,deviceId;
   String result = '';
   //Map<DataType, List<FitData>> results = Map();
@@ -97,7 +95,7 @@ class _DashboardScreenState extends BaseState<DashboardScreen> {
             onTap: () {
               openDraw();
             },
-            child: Icon(Icons.settings, color: AppColors.white,))) :
+            child: Icon(Icons.menu, color: AppColors.white,))) :
     AppBar(
         leading: InkWell(
             onTap: () {
@@ -216,10 +214,19 @@ class _DashboardScreenState extends BaseState<DashboardScreen> {
       children: <Widget>[
 
         Flexible(
-          flex:2,
-          child: CircleAvatar(
-            backgroundImage: (user.imageUrl!=null&&user.imageUrl.isNotEmpty)? NetworkImage(
-                user.imageUrl):Icon(Icons.person),
+          flex: 2,
+          child: user.imageUrl != null &&
+              user.imageUrl.isNotEmpty ? CircleAvatar(
+              backgroundImage: NetworkImage(user.imageUrl)
+
+          ) : Container(
+            height: 35,
+            width: 35,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.blue[100]
+            ),
+            child: Icon(Icons.person, color: AppColors.iconColor,),
           ),
         ),
 
@@ -247,8 +254,8 @@ class _DashboardScreenState extends BaseState<DashboardScreen> {
               Container(
                   margin: EdgeInsets.only(left:5.0,bottom: 3.0,right: 5.0),
                   child: Text(
-                    //patientUser.age!=null?"M / "+patientUser.age:"-",
-                      (user.gender!=null?user.gender[0]:"-")+"/"+store.differenceInYears, //TODo AGE Calculate based on the date of birth
+
+                      (user.gender!=null?user.gender[0]:"-")+"/"+store.differenceInYears,
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.left,
                       style:  TextStyle(
@@ -258,6 +265,37 @@ class _DashboardScreenState extends BaseState<DashboardScreen> {
                         height: 1.625,
                       )
                   )),
+              Icon(Icons.brightness_1, color: Colors.white, size: 5),
+              Container(
+                margin: EdgeInsets.only(
+                    left: 5.0, bottom: 5.0, right: 5.0),
+                child: Text(
+                    user.weight != null ? '${user.weight} kg' : '- kg',
+                    textAlign: TextAlign.left,
+                    style:  TextStyle(
+                      color: AppColors.white,//Color.fromARGB(255, 255, 255, 255),
+                      fontWeight: FontWeight.w500,
+                      fontSize: 10,
+                      height: 1.625,
+                    )
+                ),
+              ),
+              Icon(Icons.brightness_1, color: Colors.white, size: 5),
+              Container(
+                margin: EdgeInsets.only(
+                    left: 5.0, bottom: 5.0, right: 5.0),
+                child: Text(
+                    user.height != null ? '${user.height} cm' : '- cm',
+                    textAlign: TextAlign.left,
+                    style:  TextStyle(
+                      color: AppColors.white,//Color.fromARGB(255, 255, 255, 255),
+                      fontWeight: FontWeight.w500,
+                      fontSize: 10,
+                      height: 1.625,
+                    )
+                ),
+              ),
+
 
             ],)
 
@@ -354,7 +392,8 @@ class _DashboardScreenState extends BaseState<DashboardScreen> {
                 child: Container(
                   width: double.infinity,
                   color: Colors.white,
-                  padding: Margins.baseMarginVertical,
+                  padding: EdgeInsets.only(bottom: 20, top: 8),
+                  //margin: EdgeInsets.only(bottom: 10),
                   child: StreamBuilder(
                       stream: RecordDao(uid: user.uId).collectionStreamPulse(),
                       builder: (context, snapshot) {
@@ -365,25 +404,7 @@ class _DashboardScreenState extends BaseState<DashboardScreen> {
                       }),
                 ),
               ),
-              Container(color: AppColors.white, child: Divider()),
-              Flexible(
-                fit: FlexFit.loose,
-                child: Container(
-                  width: double.infinity,
-                  color: Colors.white,
-                  padding: Margins.baseMarginVertical,
-                  child: StreamBuilder(
-                      stream:
-                          RecordDao(uid: user.uId).collectionStreamGlucose(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          glucoseRecord = snapshot.data;
-                        }
-                        return glucoseRecordContainer(glucoseRecord);
-                      }),
-                ),
-              ),
-              //Container(color: AppColors.white, child: Divider()),
+
 
             ],
           )),
@@ -441,33 +462,38 @@ class _DashboardScreenState extends BaseState<DashboardScreen> {
                                   fontSize: 13,
                                   height: 1.625,
                                 ))),
-//                        Container(
-//                          width: 5.0,
-//                          height: 5.0,
-//                          decoration: new BoxDecoration(
-//                            color: Colors.white,
-//                            shape: BoxShape.circle,
-//                          ),
-//                        ),
-//                        Container(
-//                            margin: EdgeInsets.only(
-//                                left: 5.0, bottom: 5.0, right: 5.0),
-//                            child: Text(
-////                userRecords.length > 0?userRecords[0].weight!=null?userRecords[0].weight+"Kg":"-":"-",
-//                                (userRecords.length > 0
-//                                    ? userRecords[0].weight != null
-//                                        ? userRecords[0].weight.toString() +
-//                                            " Kg"
-//                                        : ''
-//                                    : ''),
-//                                textAlign: TextAlign.left,
-//                                style: TextStyle(
-//                                  color: AppColors.white,
-//                                  //Color.fromARGB(255, 255, 255, 255),
-//                                  fontWeight: FontWeight.w500,
-//                                  fontSize: 13,
-//                                  height: 1.625,
-//                                ))),
+                        Icon(Icons.brightness_1, color: Colors.white, size: 5),
+                        Container(
+                          margin: EdgeInsets.only(
+                              left: 5.0, bottom: 5.0, right: 5.0),
+                          child: Text(
+                            userRecords.length > 0 && userRecords[0].weight != null ? '${userRecords[0].weight} kg' : '- kg',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              color: AppColors.white,
+                              //Color.fromARGB(255, 255, 255, 255),
+                              fontWeight: FontWeight.w500,
+                              fontSize: 13,
+                              height: 1.625,
+                            )
+                          ),
+                        ),
+                        Icon(Icons.brightness_1, color: Colors.white, size: 5),
+                        Container(
+                          margin: EdgeInsets.only(
+                              left: 5.0, bottom: 5.0, right: 5.0),
+                          child: Text(
+                              userRecords.length > 0 && userRecords[0].height != null ? '${userRecords[0].height} cm' : '- cm',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                color: AppColors.white,
+                                //Color.fromARGB(255, 255, 255, 255),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 13,
+                                height: 1.625,
+                              )
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -492,39 +518,16 @@ class _DashboardScreenState extends BaseState<DashboardScreen> {
         ));
   }
 
-//  List<DataType> dataType = [
-//    //DataType.HEART_RATE,
-//    DataType.DISTANCE,
-//    DataType.STEP_COUNT,
-//    DataType.ENERGY,
-//    DataType.SLEEP,
-//    //DataType.WEIGHT
-//
-//  ];
-//  List<String> d = ['Distance', 'Steps', 'Calories', 'Sleep'];
-//
-//  CalculateSleep(List<FitData> res) {
-//    DateTime time = DateTime.now();
-//    if(res.length == 0) {
-//      return '--:--';
-//    }
-//    for(int i=0; i< res.length; i++) {
-//      time = time.add(res[0].dateTo.difference(res[0].dateFrom));
-//    }
-//    return DateTime.now().difference(time);
-//  }
 
   void recordImageClicked(
-      {@required int clickedValue, bool isHistory = false}) {
+      {@required int clickedValue}) {
     push(PatientReadingValuesScreen(
       user: user,
       clickedValue: clickedValue,
       bpRecords: bpRecords,
       spo2Records: spo2Records,
-      glucoseRecords: glucoseRecord,
       pulseRecords: pulseRecords,
       tempRecords: tempRecords,
-      isHistoryScreen: isHistory,
     ));
   }
 
@@ -557,7 +560,7 @@ class _DashboardScreenState extends BaseState<DashboardScreen> {
             flex: 1,
             child: GestureDetector(
                 onTap: () {
-                  recordImageClicked(clickedValue: 3);
+                  recordImageClicked(clickedValue: 0);
                 },
                 child: Container(
                     margin: EdgeInsets.only(right: 10),
@@ -578,7 +581,7 @@ class _DashboardScreenState extends BaseState<DashboardScreen> {
             flex: 1,
             child: GestureDetector(
                 onTap: () {
-                  recordImageClicked(clickedValue: 3);
+                  recordImageClicked(clickedValue: 1);
                 },
                 child: Container(
                     margin: EdgeInsets.only(right: 10),
@@ -597,7 +600,7 @@ class _DashboardScreenState extends BaseState<DashboardScreen> {
             flex: 1,
             child: GestureDetector(
                 onTap: () {
-                  recordImageClicked(clickedValue: 3);
+                  recordImageClicked(clickedValue: 2);
                 },
                 child: Container(
                     margin: EdgeInsets.only(right: 10),
@@ -625,41 +628,6 @@ class _DashboardScreenState extends BaseState<DashboardScreen> {
       ],
     );
   }
-  glucoseRecordContainer(List<GlucoseRecord> glucoseRecords) {
-    return Row(
-      children: <Widget>[
-        Expanded(flex: 2, child: getHeader("Glucose")),
-        Expanded(flex: 7, child: getGlucoseRow(glucoseRecords)),
-        role == Constants.PATIENT ? Expanded(
-            flex: 1,
-            child: GestureDetector(
-                onTap: () {
-                  recordImageClicked(clickedValue: 3);
-                },
-                child: Container(
-                    margin: EdgeInsets.only(right: 10),
-                    child: Icon(Icons.add_circle_outline, color: AppColors.activeIconColor,)
-                ))) : Expanded(flex: 0, child: Container(),)
-      ],
-    );
-  }
 
-  Widget getGlucoseRow(List<GlucoseRecord> data) {
-    List<Widget> widgets = List<Widget>();
-
-    store.getValuesGlucose(data, widgets);
-
-    Column row = Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: widgets),
-      ],
-    );
-    return row;
-  }
 
 }

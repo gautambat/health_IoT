@@ -6,7 +6,7 @@ part of 'patient_readings_store.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$PatientReadingsStore on PatientReadingsStoreBase, Store {
   final _$fromPulseReadingAtom =
@@ -341,15 +341,6 @@ mixin _$PatientReadingsStore on PatientReadingsStoreBase, Store {
   @override
   Future<void> tempClicked(String uid, BuildContext context) {
     return _$tempClickedAsyncAction.run(() => super.tempClicked(uid, context));
-  }
-
-  final _$glucoseClickedAsyncAction =
-      AsyncAction('PatientReadingsStoreBase.glucoseClicked');
-
-  @override
-  Future<void> glucoseClicked(String uid, BuildContext context) {
-    return _$glucoseClickedAsyncAction
-        .run(() => super.glucoseClicked(uid, context));
   }
 
   final _$deviceValuesReadingAsyncAction =

@@ -64,12 +64,10 @@ class RegexConst{
   static final RegExp textNumberRegExp = RegExp('[a-zA-Z0-9]');
 }
 class Constants {
-  static const PULSE= 0;
-  static const BP= 1;
-  static const SPO2= 2;
-  static const GLUCOSE= 3;
-  static const WEIGHT= 5;
-  static const TEMP= 4;
+  static const PULSE= 3;
+  static const BP= 0;
+  static const SPO2= 1;
+  static const TEMP= 2;
 
   static const Appointment_Date = "Appointment Date";
   static const Appointment_Time = "Appointment Time";

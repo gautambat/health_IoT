@@ -334,10 +334,19 @@ getDrawerTile(title: Titles.APPOINTMENTS, icon: CustomIcon.APPOINTMENTS, onTap: 
                       },child:
                   Row(children: <Widget>[
                     Flexible(
-                      flex:2,
-                      child: CircleAvatar(
-                        backgroundImage: (patientUser.imageUrl!=null&&patientUser.imageUrl.isNotEmpty)? NetworkImage(
-                            patientUser.imageUrl):Icon(Icons.person),
+                      flex: 1,
+                      child: patientUser.imageUrl != null &&
+                          patientUser.imageUrl.isNotEmpty ? CircleAvatar(
+                          backgroundImage: NetworkImage(patientUser.imageUrl)
+
+                      ) : Container(
+                        height: 35,
+                        width: 35,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.blue[100]
+                        ),
+                        child: Icon(Icons.person, color: AppColors.iconColor,),
                       ),
                     ),
                     Expanded(flex:9,child: Container(

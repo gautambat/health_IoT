@@ -127,7 +127,7 @@ class _PatientProfileScreenState extends BaseState<PatientProfileScreen> {
           )
 
         ],
-        leftWidget: IconButton(icon: Icon(Icons.arrow_back), onPressed:() => pop()));
+        leftWidget: IconButton(icon: Icon(Icons.arrow_back, color: Colors.white,), onPressed:() => pop()));
   }
 //  @override
 //  getAppBar() => getAppBarWidgets(title: "Registration", widgets: [Text("SAVE")], leftWidget: null);
@@ -264,7 +264,7 @@ class _PatientProfileScreenState extends BaseState<PatientProfileScreen> {
                       //print(store.imageUrl+' prof');
                     });
                   },
-                  child: Container(
+                  child: store.imageUrl != '' ?  Container(
                     margin: EdgeInsets.only(top: 30.0),
                     height: 70.0,
                     width: 70.0,
@@ -272,9 +272,19 @@ class _PatientProfileScreenState extends BaseState<PatientProfileScreen> {
                         shape: BoxShape.circle,
                         image: DecorationImage(
                             fit: BoxFit.fill,
-                            image: store.imageUrl == '' ? Icon(Icons.person) : NetworkImage(store.imageUrl)
+                            image: NetworkImage(store.imageUrl)
                         )
                     ),
+                  ):
+                  Container(
+                    margin: EdgeInsets.only(top: 30.0),
+                    height: 70.0,
+                    width: 70.0,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.blue[100]
+                    ),
+                    child: Icon(Icons.person, color: AppColors.iconColor,),
                   ),
                 ),
                 Container(
