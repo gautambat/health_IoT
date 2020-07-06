@@ -42,7 +42,7 @@
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/white"
                 android:textSize="18dp"
-                android:text="Spo2 Readings"></TextView>
+                android:text="Device Readings"></TextView>
         </RelativeLayout>
 
 
