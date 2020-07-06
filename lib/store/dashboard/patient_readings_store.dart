@@ -28,6 +28,8 @@ abstract class PatientReadingsStoreBase with Store, StoreMixin {
 
   @observable
   bool fromPulseReading = false;
+  @observable
+  bool fromSpo2Reading = false;
 
   PatientReadingsStoreBase();
 
@@ -45,10 +47,7 @@ abstract class PatientReadingsStoreBase with Store, StoreMixin {
   TextEditingController bpDiaController = new TextEditingController();
   @observable
   TextEditingController spo2Controller = new TextEditingController();
-  @observable
-  TextEditingController glucoseController = new TextEditingController();
-  @observable
-  TextEditingController glucoseAfterMealControllr = new TextEditingController();
+  TextEditingController spo2FromDeviceController = new TextEditingController();
   @observable
   TextEditingController tempController = new TextEditingController();
   @observable
@@ -60,35 +59,14 @@ abstract class PatientReadingsStoreBase with Store, StoreMixin {
   @observable
   bool emptyTemp = false;
   @observable
-  bool emptyGlucose = false;
-  @observable
-  bool emptyAfterGlucose = false;
-  @observable
   bool notEmptyPulse = false;
   @observable
   bool notEmptyFromDevicePulse = false;
   @observable
+  bool notEmptyFromDeviceSpo2 = false;
+  @observable
   var pulseController = new TextEditingController();
   var pulseFromDeviceController = new TextEditingController();
-
-  @observable
-  bool isHistoryScreen =false;
-
-
-
-
-
-  /*readingValues() async {
-    pulseReadingValues = await ListsDao().pulseReadingValues();
-    spo2ReadingValues = await ListsDao().spo2ReadingValues();
-    tempReadingValues = await ListsDao().tempReadingValues();
-    weightReadingValues = await ListsDao().weightReadingValues();
-    bpDiaReadingValues = await ListsDao().bpDiaReadingValues();
-    bpSysReadingValues = await ListsDao().bpSysReadingValues();
-    glucoseAfterMealReadingValues = await ListsDao().glucoseAfterMealReadingValues();
-    glucoseBeforeMealReadingValues = await ListsDao().glucoseBeforeMealReadingValues();
-  }*/
-
 
   @action
   setUser(user){
@@ -113,6 +91,14 @@ abstract class PatientReadingsStoreBase with Store, StoreMixin {
       notEmptyFromDevicePulse = true;
     else
       notEmptyFromDevicePulse = false;
+  }
+
+  @action
+  onSpo2FromDeviceChanged() {
+    if (spo2FromDeviceController.text.isNotEmpty)
+      notEmptyFromDeviceSpo2 = true;
+    else
+      notEmptyFromDeviceSpo2 = false;
   }
 
   @action
@@ -149,37 +135,10 @@ spo2Changed() {
     else
       emptyTemp = false;
   }
-  @action
-  glucoseChanged() {
-
-    if (glucoseController.text.isNotEmpty) {
-      if (glucoseAfterMealControllr.text.isNotEmpty) {
-        emptyGlucose = true;
-        emptyAfterGlucose = true;
-      }
-      else {
-        emptyGlucose = true;
-        emptyAfterGlucose = false;
-      }
-    }
-    else {
-      emptyGlucose = false;
-      emptyAfterGlucose = false;
-    }
-
-
-  }
 
   @action
   Future<void> pulseClicked(String uid, BuildContext context) async {
-    /*String userId;
-    if (uid != null) {
-      userId = uid;
-    }
-    else {
-      User user = Provider.of<User>(context, listen: false);
-      userId = user.uid;
-    }*/
+
     int pulseValue = int.parse(pulseController.text);
     notEmptyPulse = false;
 
@@ -190,43 +149,11 @@ spo2Changed() {
 
 
   }
-  //Alert related logic
-//  alertDoctor(alertValue) async{
-//    //var doctorUid = user.linkedDoctors[0];
-//    Map<String,dynamic> alertDetails = Map();
-//    alertDetails["isAlerted"] = true;
-//    alertDetails["alertedValue"] = alertValue;
-//    alertDetails["id"] = user.pId;
-//    alertDetails["uId"] = user.uId;
-//    alertDetails["linkedDoctors"] = user.linkedDoctors;
-//
-//    await UserDao(uid: user.uId).createAlert(alertDetails);
-////    for(var doctorUid in user.linkedDoctors){
-////      await  DoctorDao(uid: doctorUid).getPatient(user.pId).then((value) {
-////        value.isAlerted = true;
-////        value.alertedValue = alertValue;
-////        value.id = user.pId;
-////        DoctorDao(uid: doctorUid).createPatientUser(value).then((value) {
-////          //print("Alerted Record inserted in doctor");
-////        } );
-////      });
-////    }
-//  }
-//  //check if the value  range is high
-//  isInAlertRange(range){
-//    return range =="alert"||range =="high";
-//  }
 
   @action
   Future<void> bpSaveClicked(String uid, BuildContext context) async {
     String userId= user.uId;
-//    if (uid != null) {
-//      userId = uid;
-//    }
-//    else {
-//      User user = Provider.of<User>(context, listen: false);
-//      userId = user.uid;
-//    }
+
     emptyBp = false;
     empty1Bp = false;
 
@@ -264,13 +191,7 @@ spo2Changed() {
   @action
   Future<void> spo2Clicked(String uid, BuildContext context) async {
     String userId= user.uId;
-//    if (uid != null) {
-//      userId = uid;
-//    }
-//    else {
-//      User user = Provider.of<User>(context, listen: false);
-//      userId = user.uid;
-//    }
+
     emptySpo2 = false;
     int spo2Value = int.parse(spo2Controller.text);
 
@@ -348,42 +269,20 @@ spo2Changed() {
 
 
 @action
-Future<void> deviceValuesReading(int selectedTab) async {
+Future<void> deviceValuesReading(int selectedTab, BuildContext context) async {
     String response = "";
-    if (selectedTab ==0) {
-      try {
-        final String result = await platform.invokeMethod('fromPulse');
-        /*if(result!=null) {
-          var parsedJson = json.decode(result.toString());
-
-          //print("result"+result);
-          var spo2record = Spo2Record.fromMap(data: parsedJson);
-          spo2Controller.text = spo2record.spo2.toString();
-          String pulse = spo2record.pulse.toString();
-          if(pulse!=null){
-            fromPulseReading = true;
-            notEmptyFromDevicePulse = true;
-            pulseFromDeviceController.text = spo2record.pulse.toString();
-            onPulseFromDeviceChanged();
-          }
-          if(spo2Controller.text.isNotEmpty)
-            spo2Changed();
-
-        }*/
-      }  catch (e) {
-        response = "Failed to Invoke: '${e.message}'.";
-      }
-    }
-    else if (selectedTab == 1) {
-      try {
+    if (selectedTab == 0) {
+      //BP
+      /*try {
         final String result = await platform.invokeMethod('fromBP');
         response = result;
 
       }  catch (e) {
         response = "Failed to Invoke: '${e.message}'.";
-      }
+      }*/
+      showDlg('Currently implemented only for Pulse and SPO2', context);
     }
-    else if (selectedTab ==2) {
+    else if (selectedTab == 1) {
       try {
         var result = await platform.invokeMethod('fromSp');
         if(result!=null) {
@@ -392,13 +291,13 @@ Future<void> deviceValuesReading(int selectedTab) async {
           //print("result"+result);
           var spo2record = Spo2Record.fromMap(data: parsedJson);
             spo2Controller.text = spo2record.spo2.toString();
-            String pulse = spo2record.pulse.toString();
-            if(pulse!=null){
+            //String pulse = spo2record.pulse.toString();
+            /*if(pulse!=null){
               fromPulseReading = true;
               notEmptyFromDevicePulse = true;
               pulseFromDeviceController.text = spo2record.pulse.toString();
              onPulseFromDeviceChanged();
-            }
+            }*/
           if(spo2Controller.text.isNotEmpty)
             spo2Changed();
 
@@ -407,24 +306,41 @@ Future<void> deviceValuesReading(int selectedTab) async {
         response = "Failed to Invoke: '${e.message}'.";
       }
     }
-    else if (selectedTab ==3) {
-      try {
-        final String result = await platform.invokeMethod('fromGlucose');
-        response = result;
-
-//        glucoseController.text = response;
-      }  catch (e) {
-        response = "Failed to Invoke: '${e.message}'.";
-      }
-    }
-    else  {
-      try {
+    else if (selectedTab ==2) {
+      //Temp
+      /*try {
         final String result = await platform.invokeMethod('fromTemp');
         response = result;
 
 //        tempController.text = response;
       }  catch (e) {
         response = "";
+      }*/
+      showDlg('Currently implemented only for Pulse and SPO2', context);
+    }
+    else  {
+      try {
+        final String result = await platform.invokeMethod('fromSp');
+        response = result;
+        if(result!=null) {
+          var parsedJson = json.decode(result.toString());
+
+          //print("result"+result);
+          var pulserecord = PulseRecord.fromMap(data: parsedJson);
+          pulseController.text = pulserecord.pulse.toString();
+          /*String spo2 = pulserecord.spo2.toString();
+          if(spo2!=null){
+            fromSpo2Reading = true;
+            notEmptyFromDeviceSpo2 = true;
+            spo2FromDeviceController.text = spo2;
+            onSpo2FromDeviceChanged();
+          }*/
+          if(pulseController.text.isNotEmpty)
+            onPulseChanged();
+
+        }
+      }  catch (e) {
+        response = "Failed to Invoke: '${e.message}'.";
       }
     }
 
@@ -460,18 +376,19 @@ Future<void> deviceValuesReading(int selectedTab) async {
       else
         pulseRecord.isManual = false;
       await RecordDao(uid: user.uId).addPulseRecord(pulseRecord).then((value) {
-
-       if(!fromDevicePulse)
+        pulseController.text="";
+        saveShowDlg(ErrorMessages.PULSE_DETAILS_SAVED, context);
+       /*if(!fromDevicePulse)
         {
           pulseController.text="";
           saveShowDlg(ErrorMessages.PULSE_DETAILS_SAVED, context);
         }
        else
-{
-  pulseFromDeviceController.text="";
-  saveShowDlg(ErrorMessages.PULSE_SPO2_DETAILS_SAVED, context);
+      {
+        pulseFromDeviceController.text="";
+        saveShowDlg(ErrorMessages.PULSE_SPO2_DETAILS_SAVED, context);
 
-}
+      }*/
         text = "";
 
         //showToast(message: "Pulse Details Saved");

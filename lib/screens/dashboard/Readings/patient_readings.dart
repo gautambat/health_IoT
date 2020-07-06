@@ -119,6 +119,20 @@ class _PatientReadingValuesScreenState
                       getTextField(label:Labels.PULSEHINT, controller:store.pulseController, type:TextInputType.phone,formatters:inputFormatters,onChange: (value){
                         store.onPulseChanged();
                       }),
+                      Visibility(
+                          visible: store.notEmptyFromDeviceSpo2,
+                          child:Container(
+                            margin: EdgeInsets.all(20.0),
+                            decoration: BoxDecoration(
+                              color: AppColors.homeScreenBackground,
+                              border: Border.fromBorderSide(
+                                  Borders.primaryBorder),
+                              borderRadius: Radii.k4pxRadius,
+                            ),
+                            height: 60.0,
+                            child: getTextField(label:Labels.SPO2HINT, controller:store.spo2FromDeviceController, type:TextInputType.number,onChange: (value){
+                              store.onSpo2FromDeviceChanged();
+                            }),)),
 
 
 
@@ -415,17 +429,9 @@ class _PatientReadingValuesScreenState
     var loc = await location.requestPermission();
     if(loc == PermissionStatus.granted){
        if(locationEnable)
-        store.deviceValuesReading(selectedTab);
+        store.deviceValuesReading(selectedTab, context);
     }
 
-//else{
-//  if (loc == PermissionStatus.denied) {
-//    loc = await location.requestPermission();
-//    if (loc == PermissionStatus.granted) {
-//      store.deviceValuesReading(selectedTab);
-//    }
-//  }
-//}
   }
 
 

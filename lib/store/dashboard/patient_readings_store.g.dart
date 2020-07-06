@@ -25,6 +25,22 @@ mixin _$PatientReadingsStore on PatientReadingsStoreBase, Store {
     });
   }
 
+  final _$fromSpo2ReadingAtom =
+      Atom(name: 'PatientReadingsStoreBase.fromSpo2Reading');
+
+  @override
+  bool get fromSpo2Reading {
+    _$fromSpo2ReadingAtom.reportRead();
+    return super.fromSpo2Reading;
+  }
+
+  @override
+  set fromSpo2Reading(bool value) {
+    _$fromSpo2ReadingAtom.reportWrite(value, super.fromSpo2Reading, () {
+      super.fromSpo2Reading = value;
+    });
+  }
+
   final _$deviceIdAtom = Atom(name: 'PatientReadingsStoreBase.deviceId');
 
   @override
@@ -100,39 +116,6 @@ mixin _$PatientReadingsStore on PatientReadingsStoreBase, Store {
   set spo2Controller(TextEditingController value) {
     _$spo2ControllerAtom.reportWrite(value, super.spo2Controller, () {
       super.spo2Controller = value;
-    });
-  }
-
-  final _$glucoseControllerAtom =
-      Atom(name: 'PatientReadingsStoreBase.glucoseController');
-
-  @override
-  TextEditingController get glucoseController {
-    _$glucoseControllerAtom.reportRead();
-    return super.glucoseController;
-  }
-
-  @override
-  set glucoseController(TextEditingController value) {
-    _$glucoseControllerAtom.reportWrite(value, super.glucoseController, () {
-      super.glucoseController = value;
-    });
-  }
-
-  final _$glucoseAfterMealControllrAtom =
-      Atom(name: 'PatientReadingsStoreBase.glucoseAfterMealControllr');
-
-  @override
-  TextEditingController get glucoseAfterMealControllr {
-    _$glucoseAfterMealControllrAtom.reportRead();
-    return super.glucoseAfterMealControllr;
-  }
-
-  @override
-  set glucoseAfterMealControllr(TextEditingController value) {
-    _$glucoseAfterMealControllrAtom
-        .reportWrite(value, super.glucoseAfterMealControllr, () {
-      super.glucoseAfterMealControllr = value;
     });
   }
 
@@ -212,38 +195,6 @@ mixin _$PatientReadingsStore on PatientReadingsStoreBase, Store {
     });
   }
 
-  final _$emptyGlucoseAtom =
-      Atom(name: 'PatientReadingsStoreBase.emptyGlucose');
-
-  @override
-  bool get emptyGlucose {
-    _$emptyGlucoseAtom.reportRead();
-    return super.emptyGlucose;
-  }
-
-  @override
-  set emptyGlucose(bool value) {
-    _$emptyGlucoseAtom.reportWrite(value, super.emptyGlucose, () {
-      super.emptyGlucose = value;
-    });
-  }
-
-  final _$emptyAfterGlucoseAtom =
-      Atom(name: 'PatientReadingsStoreBase.emptyAfterGlucose');
-
-  @override
-  bool get emptyAfterGlucose {
-    _$emptyAfterGlucoseAtom.reportRead();
-    return super.emptyAfterGlucose;
-  }
-
-  @override
-  set emptyAfterGlucose(bool value) {
-    _$emptyAfterGlucoseAtom.reportWrite(value, super.emptyAfterGlucose, () {
-      super.emptyAfterGlucose = value;
-    });
-  }
-
   final _$notEmptyPulseAtom =
       Atom(name: 'PatientReadingsStoreBase.notEmptyPulse');
 
@@ -277,6 +228,23 @@ mixin _$PatientReadingsStore on PatientReadingsStoreBase, Store {
     });
   }
 
+  final _$notEmptyFromDeviceSpo2Atom =
+      Atom(name: 'PatientReadingsStoreBase.notEmptyFromDeviceSpo2');
+
+  @override
+  bool get notEmptyFromDeviceSpo2 {
+    _$notEmptyFromDeviceSpo2Atom.reportRead();
+    return super.notEmptyFromDeviceSpo2;
+  }
+
+  @override
+  set notEmptyFromDeviceSpo2(bool value) {
+    _$notEmptyFromDeviceSpo2Atom
+        .reportWrite(value, super.notEmptyFromDeviceSpo2, () {
+      super.notEmptyFromDeviceSpo2 = value;
+    });
+  }
+
   final _$pulseControllerAtom =
       Atom(name: 'PatientReadingsStoreBase.pulseController');
 
@@ -290,22 +258,6 @@ mixin _$PatientReadingsStore on PatientReadingsStoreBase, Store {
   set pulseController(TextEditingController value) {
     _$pulseControllerAtom.reportWrite(value, super.pulseController, () {
       super.pulseController = value;
-    });
-  }
-
-  final _$isHistoryScreenAtom =
-      Atom(name: 'PatientReadingsStoreBase.isHistoryScreen');
-
-  @override
-  bool get isHistoryScreen {
-    _$isHistoryScreenAtom.reportRead();
-    return super.isHistoryScreen;
-  }
-
-  @override
-  set isHistoryScreen(bool value) {
-    _$isHistoryScreenAtom.reportWrite(value, super.isHistoryScreen, () {
-      super.isHistoryScreen = value;
     });
   }
 
@@ -347,9 +299,9 @@ mixin _$PatientReadingsStore on PatientReadingsStoreBase, Store {
       AsyncAction('PatientReadingsStoreBase.deviceValuesReading');
 
   @override
-  Future<void> deviceValuesReading(int selectedTab) {
+  Future<void> deviceValuesReading(int selectedTab, BuildContext context) {
     return _$deviceValuesReadingAsyncAction
-        .run(() => super.deviceValuesReading(selectedTab));
+        .run(() => super.deviceValuesReading(selectedTab, context));
   }
 
   final _$PatientReadingsStoreBaseActionController =
@@ -389,6 +341,17 @@ mixin _$PatientReadingsStore on PatientReadingsStoreBase, Store {
   }
 
   @override
+  dynamic onSpo2FromDeviceChanged() {
+    final _$actionInfo = _$PatientReadingsStoreBaseActionController.startAction(
+        name: 'PatientReadingsStoreBase.onSpo2FromDeviceChanged');
+    try {
+      return super.onSpo2FromDeviceChanged();
+    } finally {
+      _$PatientReadingsStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   dynamic onBpChanged() {
     final _$actionInfo = _$PatientReadingsStoreBaseActionController.startAction(
         name: 'PatientReadingsStoreBase.onBpChanged');
@@ -422,38 +385,24 @@ mixin _$PatientReadingsStore on PatientReadingsStoreBase, Store {
   }
 
   @override
-  dynamic glucoseChanged() {
-    final _$actionInfo = _$PatientReadingsStoreBaseActionController.startAction(
-        name: 'PatientReadingsStoreBase.glucoseChanged');
-    try {
-      return super.glucoseChanged();
-    } finally {
-      _$PatientReadingsStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
 fromPulseReading: ${fromPulseReading},
+fromSpo2Reading: ${fromSpo2Reading},
 deviceId: ${deviceId},
 user: ${user},
 bpController: ${bpController},
 bpDiaController: ${bpDiaController},
 spo2Controller: ${spo2Controller},
-glucoseController: ${glucoseController},
-glucoseAfterMealControllr: ${glucoseAfterMealControllr},
 tempController: ${tempController},
 emptyBp: ${emptyBp},
 empty1Bp: ${empty1Bp},
 emptySpo2: ${emptySpo2},
 emptyTemp: ${emptyTemp},
-emptyGlucose: ${emptyGlucose},
-emptyAfterGlucose: ${emptyAfterGlucose},
 notEmptyPulse: ${notEmptyPulse},
 notEmptyFromDevicePulse: ${notEmptyFromDevicePulse},
-pulseController: ${pulseController},
-isHistoryScreen: ${isHistoryScreen}
+notEmptyFromDeviceSpo2: ${notEmptyFromDeviceSpo2},
+pulseController: ${pulseController}
     ''';
   }
 }

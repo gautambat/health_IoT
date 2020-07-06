@@ -10,14 +10,6 @@ part of 'doctor_patient_view_screen_store.dart';
 
 mixin _$DoctorPatientViewScreenStore
     on DoctorPatientViewScreenStoreBase, Store {
-  final _$takeECGAsyncAction =
-      AsyncAction('DoctorPatientViewScreenStoreBase.takeECG');
-
-  @override
-  Future takeECG(dynamic push) {
-    return _$takeECGAsyncAction.run(() => super.takeECG(push));
-  }
-
   @override
   String toString() {
     return '''
