@@ -30,7 +30,7 @@ class RecordDao{
   );
   Stream<PulseRecord> docStreamPulse(String recordId) => _service.documentStream(
     path: FirestorePath.record(uid, recordId,CollectionType.PULSE),
-    builder: (data, documentId) => PulseRecord.fromMap(data,documentId),
+    builder: (data, documentId) => PulseRecord.fromMap(data: data,documentID: documentId),
   );
   Stream<Spo2Record> docStreamSpo2(String recordId) => _service.documentStream(
     path: FirestorePath.record(uid, recordId,CollectionType.SPO2),
@@ -56,7 +56,7 @@ class RecordDao{
 
   Stream<List<PulseRecord>> collectionStreamPulse() => _service.collectionStream(
     path: FirestorePath.records(uid,CollectionType.PULSE),
-    builder: (data, documentId) => PulseRecord.fromMap(data, documentId),
+    builder: (data, documentId) => PulseRecord.fromMap(data: data, documentID: documentId),
     sort: (lhs, rhs) => lhs.recordedTime.toDate().isBefore(rhs.recordedTime.toDate())?1:-1,
   );
 

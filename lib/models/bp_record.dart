@@ -12,13 +12,13 @@ class BPRecord{
      Timestamp recordedTime;
      int dia;
      String deviceId;
-     String systoticRange;
-     String diaRange;
-     String colorCodeSys;
-     String colorCodeDia;
+     //String systoticRange;
+     //String diaRange;
+     //String colorCodeSys;
+     //String colorCodeDia;
      bool isManual;
 
-    BPRecord({this.id,this.sys, this.recordedTime, this.dia, this.deviceId,this.systoticRange,this.colorCodeDia,this.colorCodeSys,this.diaRange,this.isManual});
+    BPRecord({this.id,this.sys, this.recordedTime, this.dia, this.deviceId,this.isManual});
 
     factory BPRecord.fromMap({Map data,documentID}) {
       data = data ?? { };
@@ -28,10 +28,10 @@ class BPRecord{
         recordedTime: data['recordedTime'],
         dia: data['dia'],
         deviceId: data['deviceId']?? '',
-        systoticRange: data['systoticRange']?? '',
+        /*systoticRange: data['systoticRange']?? '',
         diaRange: data['diaRange']?? '',
         colorCodeSys: data['colorCodeSys']?? '',
-        colorCodeDia: data['colorCodeDia']?? '',
+        colorCodeDia: data['colorCodeDia']?? '',*/
         isManual: data['isManual']??true,
       );
     }
@@ -42,34 +42,13 @@ class BPRecord{
       data['dia'] = dia;
       data['sys'] = sys;
       data['deviceId'] = deviceId;
-      data['systoticRange'] = systoticRange;
+      /*data['systoticRange'] = systoticRange;
       data['diaRange'] = diaRange;
       data['colorCodeSys'] = colorCodeSys;
-      data['colorCodeDia'] = colorCodeDia;
+      data['colorCodeDia'] = colorCodeDia;*/
       data['isManual'] = isManual;
       return data;
     }
-    factory BPRecord.fromSnapShot(DocumentSnapshot snapshot){
-      var data = snapshot.data;
-      data = data ?? {};
-      if (data.isNotEmpty) {
-        return BPRecord(
-          id: data['id'],
-          sys: data['sys'],
-          recordedTime: data['recordedTime'],
-          dia: data['dia'],
-          deviceId: data['deviceId']?? '',
-          systoticRange: data['systoticRange']?? '',
-          diaRange: data['diaRange']?? '',
-          colorCodeSys: data['colorCodeSys']?? '',
-          colorCodeDia: data['colorCodeDia']?? '',
-          isManual: data['isManual']??true,
-        );
-      }
-      return null;
-    }
-
-
 
 
 }

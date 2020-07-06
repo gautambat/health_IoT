@@ -8,14 +8,14 @@ String documentIdFromCurrentDate() => DateTime.now().toIso8601String();
 class Spo2Record{
     final String id;
      int spo2;
-     int pulse;
+     //int pulse;
      Timestamp recordedTime;
      String deviceId;
-     String spo2Range;
-     String colorCode;
+     //String spo2Range;
+     //String colorCode;
      bool isManual;
 
-    Spo2Record({this.id,this.spo2, this.pulse,this.recordedTime, this.colorCode,this.deviceId,this.spo2Range,this.isManual});
+    Spo2Record({this.id,this.spo2,this.recordedTime,this.deviceId,this.isManual});
 
     factory Spo2Record.fromMap({Map data,documentID}) {
 
@@ -24,11 +24,11 @@ class Spo2Record{
       return Spo2Record(
         id:documentID??'',
         spo2: data['spo2'],
-        pulse: data['pulse'],
+        //pulse: data['pulse'],
         recordedTime: data['recordedTime'],
         deviceId: data['deviceId']?? '',
-        spo2Range: data['spo2Range']?? '',
-        colorCode: data['colorCode']?? '',
+        //spo2Range: data['spo2Range']?? '',
+        //colorCode: data['colorCode']?? '',
         isManual: data['isManual']??true,
       );
     }
@@ -37,30 +37,14 @@ class Spo2Record{
       data['id'] = id;
       data['recordedTime'] = recordedTime;
       data['spo2'] = spo2;
-      data['pulse'] = pulse;
+      //data['pulse'] = pulse;
       data['deviceId'] = deviceId;
-      data['spo2Range'] = spo2Range;
-      data['colorCode'] = colorCode;
+      //data['spo2Range'] = spo2Range;
+      //data['colorCode'] = colorCode;
       data['isManual'] = isManual;
       return data;
     }
-    factory Spo2Record.fromSnapShot(DocumentSnapshot snapshot){
-      var data = snapshot.data;
-      data = data ?? {};
-      if (data.isNotEmpty) {
-        return Spo2Record(
-          id: data['id'],
-          spo2: data['spo2'],
-          pulse: data['pulse'],
-          recordedTime: data['recordedTime'],
-          deviceId: data['deviceId']?? '',
-          spo2Range: data['spo2Range']?? '',
-          colorCode: data['colorCode']?? '',
-          isManual: data['isManual'],
-        );
-      }
-      return null;
-    }
+
 
 
 
