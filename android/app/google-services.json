@@ -8,18 +8,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:571560287628:android:c114f51b18dfecc8780aa9",
+        "mobilesdk_app_id": "1:571560287628:android:7104c8d3b698fede780aa9",
         "android_client_info": {
           "package_name": "com.remotecare.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "571560287628-sd81s9nsl4p795mmnha6hfsotipq44r0.apps.googleusercontent.com",
+          "client_id": "571560287628-m3fj8pnd0hj6u588q4jg91dpvdnplsch.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.remotecare.app",
-            "certificate_hash": "4e87160fc4588760173e58bf8509f645288031f1"
+            "certificate_hash": "618890c98d8bdebce94962364b2c167337b81c67"
           }
         },
         {
