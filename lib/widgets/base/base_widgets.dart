@@ -1,35 +1,21 @@
 import 'dart:core';
 
-import 'package:autocomplete_textfield/autocomplete_textfield.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:localstorage/localstorage.dart';
-import 'package:provider/provider.dart';
 import 'package:remote_care/constants/styles.dart';
 import 'package:remote_care/constants/values.dart';
 import 'package:remote_care/models/user.dart';
 import 'package:remote_care/screens/authentication/signup_login_screen.dart';
 import 'package:remote_care/screens/dashboard/pat_profile.dart';
 import 'package:remote_care/service/firebase_auth_service.dart';
-import 'package:remote_care/widgets/multiselect_dropfield.dart';
-import 'package:remote_care/widgets/search_droplist.dart';
 
-import '../../constants/styles.dart';
-import '../../constants/styles.dart';
 import '../../constants/styles.dart';
 import '../drawer_patient.dart';
 
 mixin BaseWidgets {
 
-  /*getTabImage(iconName){
-    return Image.asset(iconName, fit: BoxFit.none);
-  }
-  getTabImageTint(iconName,color){
-    return Image.asset(iconName, fit: BoxFit.none,color: color,);
-  }*/
   getTabText(text){
     return Text(text,style: BaseStyles.navigationTextStyle);
   }
@@ -106,228 +92,6 @@ mixin BaseWidgets {
           labelStyle: BaseStyles.editLabelTextStyle,
           hintStyle: BaseStyles.editHintTextStyle,
         ),
-      ),
-    );
-  }
-  getFormDropField({hint,label,controller,type,formatters,field,onValidate}){
-    return Container(
-      margin: Margins.baseMarginVertical,
-      child: TextFormField(
-        controller: controller,
-        keyboardType: type,
-        //textInputAction: ,
-        onChanged: (text){
-
-        },
-        //initialValue: initial,
-        readOnly: (field==FIELD_TYPE.PID||field==FIELD_TYPE.PH_NUMBER||field==FIELD_TYPE.dob)?true:false,
-        inputFormatters: formatters,
-        validator:(value)=> onValidate(value),
-        enableSuggestions:false ,
-        style: BaseStyles.editTextTextStyle,
-        decoration: InputDecoration(
-//          contentPadding: EdgeInsets.zero,
-          filled: true,
-//          helperText: label,
-          fillColor: AppColors.primaryBackground,
-          enabledBorder: Borders.outlineInputBorder,
-          focusedBorder: Borders.outlineInputBorder,
-          errorBorder: Borders.outlineErrorInputBorder,
-          focusedErrorBorder: Borders.outlineErrorInputBorder,
-          hintText: hint,
-          labelText: label,
-          enabled: true,
-
-          //floatingLabelBehavior: FloatingLabelBehavior.always,
-          labelStyle: BaseStyles.editLabelTextStyle,
-          hintStyle: BaseStyles.editHintTextStyle,
-        ),
-      ),
-    );
-  }
-
-  getLOVTextField({hint, label, value, onChanged, onValidate, index, List<String>items}) {
-    if(index == -1) {
-      return Container(
-        margin: Margins.baseMarginVertical,
-        child: DropdownButtonFormField (
-          decoration: InputDecoration(
-            filled: true,
-//          helperText: label,
-            fillColor: AppColors.primaryBackground,
-            enabledBorder: Borders.outlineInputBorder,
-            focusedBorder: Borders.outlineInputBorder,
-            errorBorder: Borders.outlineErrorInputBorder,
-            focusedErrorBorder: Borders.outlineErrorInputBorder,
-            // hintText: "Enter QTY",
-            labelText: label,
-            enabled: true,
-            hintText: hint,
-            //floatingLabelBehavior: FloatingLabelBehavior.always,
-            labelStyle: BaseStyles.editTextTextStyle2,
-            hintStyle: BaseStyles.editHintTextStyle,
-          ),
-          style: BaseStyles.editLabelTextStyle,
-          validator: (value) => onValidate(value),
-          value: value,
-          onChanged: (text) => onChanged(text),
-          items: items.map((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value, style: BaseStyles.editTextTextStyle),
-            );
-          }).toList(),
-        ),
-      );
-    }
-    return StreamBuilder(
-      stream: Firestore.instance.collection('Lists').snapshots(),
-      builder: (context, snapshot) {
-        if(snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator(),);
-        }
-        ////print('a');
-        List <String> list = new List<String>();
-        for(int i = 0; i < snapshot.data.documents.length; i++) {
-          ////print('1');
-          //List l = snapshot.hasData ? snapshot.data.documents[index]['list'] : [];
-          if(snapshot.data.documents[i]['uid'] == index) {
-            ////print('index : ' + index.toString());
-            List l = snapshot.data.documents[i]['list'];
-            for (int i = 0; i < l.length; i++) {
-              list.add(l[i].toString());
-            }
-            break;
-          }
-          else {
-            continue;
-          }
-          ////print(l);
-        }
-        ////print(snapshot.data.documents.length);
-        return Container(
-          margin: Margins.baseMarginVertical,
-          child: DropdownButtonFormField (
-
-            decoration: InputDecoration(
-              filled: true,
-//          helperText: label,
-              fillColor: AppColors.primaryBackground,
-              enabledBorder: Borders.outlineInputBorder,
-              focusedBorder: Borders.outlineInputBorder,
-              errorBorder: Borders.outlineErrorInputBorder,
-              focusedErrorBorder: Borders.outlineErrorInputBorder,
-              // hintText: "Enter QTY",
-              labelText: label,
-              enabled: true,
-              hintText: hint,
-              //floatingLabelBehavior: FloatingLabelBehavior.always,
-              labelStyle: BaseStyles.editTextTextStyle2,
-              hintStyle: BaseStyles.editHintTextStyle,
-            ),
-            style: BaseStyles.editLabelTextStyle,
-            validator: (value) => onValidate(value),
-            value: value,
-            onChanged: (text) => onChanged(text),
-            items: list.map((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Container(margin: EdgeInsets.all(0),child: Text(value, style: BaseStyles.editTextTextStyle, overflow: TextOverflow.ellipsis,)),
-              );
-            }).toList(),
-            ),
-          );
-      }
-    );
-  }
-
-  getSearchDropField({value, hint, label, onChanged, context, items, inputFormatters, controller, index, onValidate, setter }){
-    if(index == -1) {
-      return Container(
-        margin: Margins.baseMarginVertical,
-        child: DropDownFieldCustom(
-          context: context,
-          onValidate: onValidate,
-          value: value,
-          items: items,
-          setter: setter,
-          //length: list.length,
-          hintText: hint,
-          labelText: label,
-          onValueChanged: onChanged,
-          inputFormatters: inputFormatters,
-          labelStyle: BaseStyles.editTextTextStyle2,
-          hintStyle: BaseStyles.editHintTextStyle,
-          controller: controller,
-          textStyle: BaseStyles.editTextTextStyle,
-          //itemsVisibleInDropdown: items.length,
-        ),
-      );
-    }
-    return StreamBuilder(
-      stream: Firestore.instance.collection('Lists').snapshots(),
-      builder: (context, snapshot) {
-        if(snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator(),);
-        }
-        ////print('a');
-        List <String> list = new List<String>();
-        for(int i = 0; i < snapshot.data.documents.length; i++) {
-          ////print('1');
-          //List l = snapshot.hasData ? snapshot.data.documents[index]['list'] : [];
-          if(snapshot.data.documents[i]['uid'] == index) {
-            ////print('index : ' + index.toString());
-            List l = snapshot.data.documents[i]['list'];
-            for (int i = 0; i < l.length; i++) {
-              list.add(l[i].toString());
-            }
-            break;
-          }
-          else {
-            continue;
-          }
-          ////print(l);
-        }
-        ////print('a');
-        ////print(list);
-        return Container(
-          margin: Margins.baseMarginVertical,
-          child: DropDownFieldCustom(
-            context: context,
-            onValidate: onValidate,
-            value: value,
-            items: list,
-            setter: setter,
-            //length: list.length,
-            hintText: hint,
-            labelText: label,
-            onValueChanged: onChanged,
-            inputFormatters: inputFormatters,
-            labelStyle: BaseStyles.editTextTextStyle2,
-            hintStyle: BaseStyles.editHintTextStyle,
-            controller: controller,
-            textStyle: BaseStyles.editTextTextStyle,
-            //itemsVisibleInDropdown: items.length,
-          ),
-        );
-      }
-    );
-  }
-
-  getMultiSelectDropdownTextField({hint, onSaved, onValidate, initial, title, data}) {
-    return Container(
-      margin: Margins.baseMarginVertical,
-      child: MultiSelectFormFieldCustom(
-        autovalidate: false,
-        dataSource: data,
-        textField: 'display',
-        valueField: 'value',
-        onSaved: onSaved,
-        validator: onValidate,
-        initialValue: initial,
-        hintText: hint,
-        titleText: title,
-
       ),
     );
   }
@@ -442,68 +206,6 @@ mixin BaseWidgets {
           Divider(
             thickness:0.3,
           ),
-//          getDrawerTile(title: Titles.APPOINTMENTS, icon: CustomIcon.APPOINTMENTS, onTap: () {
-//            temp = storage.getItem('patient_appointment');
-//            appointmentEnabled = temp['appointment'];
-//            if(appointmentEnabled) {
-//              Navigator.push(context, MaterialPageRoute(
-//                  builder: (context) => AppointmentScreen(patientUser: user,)));
-//            }
-//            else {
-//              showDlg(message: ErrorMessages.APPOINTMENT_DISABLED, context: context);
-//            }
-//          }),
-//          Divider(
-//            thickness:0.3,
-//          ),
-//          getDrawerTile(title: Titles.SUBSCRIPTIONS, icon: CustomIcon.CARESERVICES, onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentScreen(title: Titles.SUBSCRIPTIONS,)))),
-//          Divider(
-//            thickness:0.3,
-//          ),
-//          getDrawerTile(title: Titles.EMERGENCY, icon: CustomIcon.EMERGENCY, onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => EmergencyCall(user: user)))),
-//          Divider(
-//            thickness:0.3,
-//          ),
-          /*getDrawerTile(title: Titles.LABTESTS, icon: CustomIcon.LABTESTS, onTap: () => Navigator.pop(context)),
-          Constants.IS_DOCTOR ? null : Divider(
-            thickness:0.3,
-          ),
-          Constants.IS_DOCTOR ? null : getDrawerTile(title: Titles.PHARMACY, icon: CustomIcon.PHARMACY, onTap: () => Navigator.pop(context)),
-          Constants.IS_DOCTOR ? null : Divider(
-            thickness:0.3,
-          ),*/
-          /*getDrawerTile(title: Titles.CARESERVICES, icon: CustomIcon.CARESERVICES, onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentScreen(title: Titles.CARESERVICES,)))),
-          Divider(
-            thickness:0.3,
-          ),
-          getDrawerTile(title: Titles.CARECENTER, icon: CustomIcon.CARECENTER, onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => PaymentScreen(title: Titles.CARECENTER,)))),
-          Divider(
-            thickness:0.3,
-          ),*/
-          /*Constants.IS_DOCTOR ? null : getDrawerTile(title: Titles.FITNESS, icon: CustomIcon.FITNESS, onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>Fitness()))),
-          Constants.IS_DOCTOR ? null : Divider(
-            thickness:0.3,
-          ),
-          Constants.IS_DOCTOR ? null : getDrawerTile(title: Titles.ASSISTANCE, icon: CustomIcon.ASSISTANCE, onTap: () => Navigator.pop(context)),
-          Constants.IS_DOCTOR ? null : Divider(
-            thickness:0.3,
-          ),*/
-          /*getDrawerTile(title: Titles.ABOUT_US, icon: CustomIcon.ABOUT, onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => WebView(title: Titles.ABOUT_US, ext: '', url: Constants.ABOUT_US_URL,)))),
-          Divider(
-            thickness:0.3,
-          ),
-//          getDrawerTile(title: Titles.CONTACT_US, icon: CustomIcon.CONTACT, onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>PickupLayout(scaffold: ContactUs())))),
-//          Divider(
-//            thickness:0.3,
-//          ),
-          getDrawerTile(title: Titles.TERMS_CONDITIONS, icon: CustomIcon.TERMS, onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>WebView(title: Titles.TERMS_CONDITIONS, ext: '', url: Constants.TERMS_Conditions_URl,)))),
-          Divider(
-            thickness:0.3,
-          ),
-          getDrawerTile(title: Titles.PRIVACY, icon: CustomIcon.PRIVACY, onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) =>WebView(title: Titles.PRIVACY, ext: '', url: Constants.PRIVACY_POLICY_URl,)))),
-          Divider(
-            thickness:0.3,
-          ),*/
           getDrawerTile(title: Titles.LOGOUT, icon: Icon(Icons.power_settings_new), onTap: (){
             //Provider.of<FirebaseAnalytics>(context,listen: false).logEvent(name: FirebaseEvent.PAT_LOGOUT,parameters: user.toJson());
             FirebaseAuthService().signOut();
@@ -536,29 +238,6 @@ mixin BaseWidgets {
   }
 
 
-
-  getNointernetConnectionWidget({message}){
-    return Container(
-      child: Center(child: Column(children: <Widget>[
-        Text(message, style: BaseStyles.baseTextStyle,),
-
-      ],),),
-    );
-  }
-
-  getNoHistoryFoundContainer({message}){
-    return Container(
-        margin: EdgeInsets.only(top: 50),
-        child: Center(
-            child: Text(
-              message,
-              textAlign: TextAlign.left,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 1,
-              style: BaseStyles.baseTextStyle,
-            )));
-  }
-
   showDlg({String message, BuildContext context}) {
     showDialog(
         context: context,
@@ -584,11 +263,8 @@ enum FIELD_TYPE{
   NAME,
   name,
   PID,
-  DID,
   PH_NUMBER,
   DOB,
   dob,
   GENDER,
-  ADDRESS,
-  ADHAR
 }

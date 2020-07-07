@@ -1,4 +1,4 @@
-import 'package:autocomplete_textfield/autocomplete_textfield.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -40,10 +40,6 @@ class _PatientProfileScreenState extends BaseState<PatientProfileScreen> {
 
   GlobalKey<FormState> _formkey = new GlobalKey<FormState>();
   PatientRegistrationStore store =  new PatientRegistrationStore();
-  GlobalKey<AutoCompleteTextFieldState<String>> key1 = new GlobalKey();
-  GlobalKey<AutoCompleteTextFieldState<String>> key2 = new GlobalKey();
-  //Future<List<Doctor>> doctors;
-  //ListsRecord cityList, stateList, relationList;
   User currentUser;
   //ListsRecord cityList, stateList, relationList;
   List<String> dummy = new List();

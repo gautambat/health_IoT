@@ -5,7 +5,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,7 +19,6 @@ import 'package:remote_care/service/firebase_auth_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'screens/authentication/auth_widget_builder.dart';
-import 'package:in_app_update/in_app_update.dart';
 
 void main(){
   WidgetsFlutterBinding.ensureInitialized();
@@ -73,7 +71,6 @@ class CureSquadApp extends StatefulWidget {
 }
 
 class _CureSquadAppState extends State<CureSquadApp> {
-  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
   final LocalStorage storage = new LocalStorage('cure_squad');
 
   String role;
@@ -92,33 +89,6 @@ class _CureSquadAppState extends State<CureSquadApp> {
     //initFirebaseMessaging();
     
   }
-
-checkForRemoteConfigUpdateType(){
-  switch(updateType){
-    case 0:
-    //print("NO update required");
-    break;
-    case 1:
-    InAppUpdate.startFlexibleUpdate().then((value){
-        //print("FLEXIBLE UPDATE STARTED");
-      }).catchError((e){
-        //print("START FLEXIBLE UPDATE ERROR ===>>> $e");
-      });
-      break;
-    case 2:
-    InAppUpdate.performImmediateUpdate().catchError((e){
-          //print("IMMEDIATE UPDATE ERROR =======>>>> $e");
-        }).then((value){
-          //print("IMMEDIATE UPDATE COMPLETE ");
-        });
-        break;
-      default:
-      //print("Invalid updateType value encountered");
-      break;
-  }
-  
-  
-}
 
   savePushToken(token) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
