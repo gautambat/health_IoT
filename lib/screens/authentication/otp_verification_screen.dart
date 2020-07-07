@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-//import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:remote_care/constants/styles.dart';
-import 'package:remote_care/constants/values.dart';
-import 'package:remote_care/screens/authentication/signup_login_screen.dart';
+import 'package:remote_care/constants/constants.dart';
 import 'package:remote_care/screens/main/base_state.dart';
-import 'package:remote_care/service/firebase_auth_service.dart';
 import 'package:remote_care/store/authentication/otp_verification_store.dart';
-import 'package:remote_care/utils/utils.dart';
 import 'package:remote_care/widgets/custom_button.dart';
 import 'package:remote_care/widgets/otp_text_field.dart';
 

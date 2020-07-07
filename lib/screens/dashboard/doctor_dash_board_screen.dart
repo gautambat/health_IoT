@@ -1,17 +1,11 @@
-import 'dart:ffi';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:localstorage/localstorage.dart';
-import 'package:remote_care/constants/colors.dart';
-import 'package:remote_care/constants/strings.dart';
-import 'package:remote_care/constants/styles.dart';
+import 'package:remote_care/constants/constants.dart';
 import 'package:remote_care/database/firestore/user_dao.dart';
 import 'package:remote_care/models/admin.dart';
 import 'package:remote_care/models/user.dart';
-import 'package:remote_care/screens/authentication/patient_registration_screen.dart';
 import 'package:remote_care/screens/authentication/signup_login_screen.dart';
 import 'package:remote_care/screens/dashboard/home_screen.dart';
 import 'package:remote_care/screens/main/base_state.dart';
@@ -73,75 +67,6 @@ class _DoctorDashBoardScreenState extends BaseState<DoctorDashBoardScreen> {
     super.didChangeDependencies();
   }
 
-  /*@override
-  getDrawer(){
-    return Drawer(
-      // Add a ListView to the drawer. This ensures the user can scroll
-      // through the options in the drawer if there isn't enough vertical
-      // space to fit everything.
-      child: ListView(
-        // Important: Remove any padding from the ListView.
-        padding: EdgeInsets.zero,
-        children:
-        <Widget>[
-          Container(
-            height: 140.0,
-            //margin: EdgeInsets.only(top: 10),
-            width: MediaQuery.of(context).size.width*0.75,
-            child: DoctorDrawer(context, uId),
-            decoration: BoxDecoration(
-              color: AppColors.secondaryBackground,
-            ),
-          ),
-          SizedBox(height: 10,),
-          getDrawerTile(title: Titles.PROFILE, icon: CustomIcon.PROFILE, onTap: () async {
-            push(DoctorProfile(doctor: userDetails));
-          }),
-          Divider(
-            thickness:0.3,
-          ),
-getDrawerTile(title: Titles.APPOINTMENTS, icon: CustomIcon.APPOINTMENTS, onTap: (){
-            if(appointmentEnabled) {
-              push(DoctorAppointmentScreen(userDetails: userDetails));
-            }
-            else {
-              showDlg(message: ErrorMessages.APPOINTMENT_DISABLED, context: context);
-            }
-          }),
-
-          Divider(
-            thickness:0.3,
-          ),
-          getDrawerTile(title: Titles.ABOUT_US, icon: CustomIcon.ABOUT, onTap: () => push(WebView(title: Titles.ABOUT_US, ext: '', url: Constants.ABOUT_US_URL,))),
-          Divider(
-            thickness:0.3,
-          ),
-          getDrawerTile(title: Titles.CONTACT_US, icon: CustomIcon.CONTACT, onTap: () => push(ContactUs())),
-          Divider(
-            thickness:0.3,
-          ),
-          getDrawerTile(title: Titles.TERMS_CONDITIONS, icon: CustomIcon.TERMS, onTap: () => push(WebView(title: Titles.TERMS_CONDITIONS, ext: '', url: Constants.TERMS_Conditions_URl,))),
-          Divider(
-            thickness:0.3,
-          ),
-          getDrawerTile(title: Titles.PRIVACY, icon: CustomIcon.PRIVACY, onTap: () => push(WebView(title: Titles.PRIVACY, ext: '', url: Constants.PRIVACY_POLICY_URl,))),
-          Divider(
-            thickness:0.3,
-          ),
-
-          getDrawerTile(title: Titles.LOGOUT, icon: CustomIcon.LOGOUT, onTap: (){
-            logEvent(eventName: FirebaseEvent.DOC_LOGOUT, params: userDetails.toJson());
-            FirebaseAuthService().signOut();
-            pushAndRemoveUntil(SignUpLoginScreen());
-            showToast(message: "logout successful");
-          },),
-          Divider(
-            thickness:0.3,
-          ),
-        ],
-      ),
-    );
-  }*/
   @override
   getAppBar() {
     return getAppBarWidgets(title:'Admin Dashboard', widgets:<Widget>[

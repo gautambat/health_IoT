@@ -11,13 +11,13 @@ import 'package:flutter/services.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
-import 'package:remote_care/constants/values.dart';
 import 'package:remote_care/models/role.dart';
 import 'package:remote_care/models/user.dart';
 import 'package:remote_care/screens/authentication/auth_widget.dart';
 import 'package:remote_care/service/firebase_auth_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'constants/constants.dart';
 import 'screens/authentication/auth_widget_builder.dart';
 
 void main(){

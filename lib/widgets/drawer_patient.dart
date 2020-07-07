@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
-import 'package:remote_care/constants/colors.dart';
-import 'package:remote_care/constants/strings.dart';
-import 'package:remote_care/database/firestore/user_dao.dart';
+import 'package:remote_care/constants/constants.dart';
 import 'package:remote_care/models/user.dart';
 
 Widget PatientDrawer(BuildContext context, User user) {

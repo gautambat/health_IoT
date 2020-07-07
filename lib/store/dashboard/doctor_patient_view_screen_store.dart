@@ -2,11 +2,8 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:mobx/mobx.dart';
-import 'package:remote_care/constants/colors.dart';
-import 'package:remote_care/constants/styles.dart';
 import 'package:remote_care/models/bp_record.dart';
 import 'package:remote_care/models/pulse_record.dart';
 import 'package:remote_care/models/spo2_record.dart';
@@ -14,6 +11,7 @@ import 'package:remote_care/models/temp_record.dart';
 import 'package:remote_care/models/user.dart';
 import 'package:remote_care/screens/dashboard/Readings/patient_readings.dart';
 import 'package:remote_care/utils/store_mixin.dart';
+import 'package:remote_care/constants/constants.dart';
 
 part 'doctor_patient_view_screen_store.g.dart';
 

@@ -2,9 +2,7 @@ library pin_entry_text_field;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:remote_care/constants/colors.dart';
-import 'package:remote_care/constants/styles.dart';
-import 'package:remote_care/constants/values.dart';
+import 'package:remote_care/constants/constants.dart';
 
 class OTPTextField extends StatefulWidget {
   final String lastPin;

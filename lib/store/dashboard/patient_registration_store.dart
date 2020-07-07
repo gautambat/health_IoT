@@ -10,7 +10,7 @@ import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
-import 'package:remote_care/constants/strings.dart';
+import 'package:remote_care/constants/constants.dart';
 import 'package:remote_care/database/firestore/user_dao.dart';
 import 'package:remote_care/models/user.dart';
 import 'package:remote_care/screens/dashboard/home_screen.dart';

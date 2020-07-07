@@ -1,6 +1,171 @@
-//library constants;
-
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+
+class Radii {
+  static const BorderRadiusGeometry k4pxRadius = BorderRadius.all(Radius.circular(4));
+}
+
+class Shadows {
+  static const BoxShadow primaryShadow = BoxShadow(
+    color: Color.fromARGB(13, 0, 0, 0),
+    offset: Offset(0, 2),
+    blurRadius: 5,
+  );
+}
+
+class Borders {
+  static const BorderSide primaryBorder = BorderSide(
+    color: Color.fromARGB(255, 151, 151, 151),
+    width: 1,
+    style: BorderStyle.solid,
+  );
+  static const BorderSide noBorder = BorderSide(
+    color: Colors.transparent,
+    width: 1,
+    style: BorderStyle.solid,
+  );
+  static const BorderSide secondaryBorder = BorderSide(
+    color: Color.fromARGB(255, 227, 232, 237),
+    width: 1,
+    style: BorderStyle.solid,
+  );
+  static const BorderSide errorBorder = BorderSide(
+    color: Color.fromARGB(255, 255, 0, 0),
+    width: 1,
+    style: BorderStyle.solid,
+  );
+  static const outlineInputBorder = OutlineInputBorder(
+      borderSide: Borders.secondaryBorder,
+      borderRadius: Radii.k4pxRadius
+  );
+  static const outlineErrorInputBorder = OutlineInputBorder(
+      borderSide: Borders.errorBorder,
+      borderRadius: Radii.k4pxRadius
+  );
+}
+
+class Margins{
+  static const EdgeInsets baseMarginVertical =  EdgeInsets.only(top: 8,bottom: 8);
+  static const EdgeInsets baseMarginHorizontalScreen =  EdgeInsets.only(left: 16,right: 16);
+  static const EdgeInsets baseMarginAllScreen =  EdgeInsets.only(left:16.0,right:16.0,top:5,bottom: 5);
+}
+
+class BaseStyles{
+  static TextStyle hintTextStyle = TextStyle(
+    color: AppColors.primaryText,
+    fontWeight: FontWeight.w400,
+    fontSize: 12,
+    height: 1.66667,
+  );
+  static TextStyle loginSubHeadingTextStyle = TextStyle(
+    color: AppColors.secondaryText,
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    height: 1.5,
+  );
+  static const TextStyle editLabelTextStyle = TextStyle(
+    color: AppColors.secondaryText,
+
+  );
+  static const TextStyle editTextTextStyle2 = TextStyle(
+    color: AppColors.secondaryText,
+    fontWeight: FontWeight.w600,
+    fontSize: 16,
+    height: 1.5,
+  );
+
+  static const TextStyle editTextTextStyle = TextStyle(
+    color: AppColors.primaryText,
+    fontWeight: FontWeight.w600,
+    fontSize: 16,
+    height: 1.5,
+  );
+  static const TextStyle eRxTextStyle = TextStyle(
+    color: AppColors.primaryText,
+    fontWeight: FontWeight.w600,
+    fontSize: 14,
+    height: 1.5,
+  );
+  static const TextStyle editHintTextStyle = TextStyle(
+    color: Color.fromARGB(255, 221, 225, 230),
+    fontFamily: "Manrope",
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    height: 1.5,
+  );
+  static TextStyle baseTextStyle = TextStyle(color: AppColors.primaryText,
+    fontWeight: FontWeight.w600,
+    fontSize: 14,
+    height: 1.428571,);
+
+
+  static TextStyle titleTextStyle = TextStyle(
+    color: AppColors.primaryText,
+    fontWeight: FontWeight.w700,
+    fontSize: 24,
+    height: 1.33333,
+  );
+
+  static TextStyle loginHeadingTextStyle =
+  TextStyle(
+    color: AppColors.primaryText,
+    fontWeight: FontWeight.w700,
+    fontSize: 24,
+    height: 1.45833,
+  );
+  static TextStyle errorTextStyle = TextStyle(
+    color: AppColors.errorColor,
+    fontWeight: FontWeight.w400,
+    fontSize: 12,
+    height: 1.33333,
+  );
+
+  static TextStyle navigationTextStyle = TextStyle(
+    color: AppColors.secondaryText,
+    fontFamily: "Manrope",
+    fontWeight: FontWeight.w500, //400
+    fontSize: 11, //10
+    height: 1.4,
+  );
+  static TextStyle navigationTextStyle2 = TextStyle(
+    color: AppColors.activeIconColor,
+    fontFamily: "Manrope",
+    fontWeight: FontWeight.w500, //400
+    fontSize: 11, //10
+    height: 1.4,
+  );
+  static TextStyle appTitleTextStyle =TextStyle(
+    color: AppColors.white,//Color.fromARGB(255, 255, 255, 255),
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    height: 1.625,
+  );
+
+}
+
+class AppColors {
+
+  static const Color primaryBackground = Color.fromARGB(255, 255, 255, 255);
+  static const Color secondaryBackground = Color.fromARGB(255, 0, 186, 117);
+  static const Color ternaryBackground = Color.fromARGB(255, 0, 166, 102);
+  static const Color primaryElement = Color.fromARGB(255, 239, 240, 244);
+  static const Color secondaryElement = Color.fromARGB(255, 255, 255, 255);
+  static const Color accentElement = Color.fromARGB(255, 151, 151, 151);
+  static const Color primaryText = Color.fromARGB(255, 45, 52, 64);
+  static const Color secondaryText = Color.fromARGB(255, 123, 132, 147);
+  static const Color accentText = Color.fromARGB(255, 174, 182, 196);
+  static const Color errorColor = Colors.red;
+  static const Color buttonTextColor = Color.fromARGB(255, 255, 255, 255);
+  static const Color homeScreenBackground = Color.fromARGB(255, 248, 248, 248);
+  static const Color homeScreenBackgroundWhite = Colors.white;
+  static const Color white = Colors.white;
+
+  static  Color appBarColor = Colors.greenAccent;
+  static Color activeIconColor = Color(0xff1d6fdc);
+  static Color iconColor = Color(0xff7b8392);
+  static Color tabColor = Color(0xff1d6fdc);
+  static Color notificationColor = Color(0x1a1d6fdc);
+}
 
 class Strings{
 
@@ -15,9 +180,9 @@ class Strings{
 
     static const EXIT_BACK='Tap back again to leave';
 
-  //Page Titles
 
 }
+
 class Hints {
   static const NAME = 'What is your name?';
   static const FIRST_NAME = 'What is your first name?';
@@ -57,7 +222,6 @@ class Labels {
 
 }
 class RegexConst{
-  static final RegExp addressRegExp = RegExp('[ a-zA-Z0-9#-()&./,:{}+_=@*|><]');
   static final RegExp nameRegExp = RegExp('[a-zA-Z&. ]');
   static final RegExp numberRegExp = RegExp('[0-9]');
   static final RegExp tempRegExp = RegExp('[0-9.]');
@@ -68,11 +232,6 @@ class Constants {
   static const BP= 0;
   static const SPO2= 1;
   static const TEMP= 2;
-
-  static const Appointment_Date = "Appointment Date";
-  static const Appointment_Time = "Appointment Time";
-
-
   static const PATIENT = "Patient";
   static const ADMIN = 'Admin';
 
@@ -80,7 +239,6 @@ class Constants {
 
 class PopUpMessages{
   static const CLOSE = "Close";
-
 }
 
 class ErrorMessages{
@@ -118,20 +276,12 @@ class ErrorMessages{
   static const WEIGHT_DETAILS_SAVED ="Weight Saved";
   static const SPO2_DETAILS_SAVED ="SPO2  Details Saved";
 
-
-  static const PULSE_RANGE ="Please enter pulse range values 40 to 200";
-  static const SPO2_RANGE ="Please enter spo2 range values 75 to 100";
-  static const TEMP_RANGE ="Please enter Temp range values 95 \u2109  to 106.7 \u2109";
-  static const BP_RANGE_DIA ="Please enter bp diastolic range values 40 to 100";
-  static const BP_RANGE_SYS ="Please enter bp systolic range values 70 to 190";
-
 }
 
 class TabTitle{
   static const PULSE = 'Pulse';
   static const BP = 'BP';
   static const SPO2 = 'SPO2';
-  static const GLUCOSE = 'Glucose';
   static const TEMP = 'Temp';
   static const WEIGHT = 'Weight';
 }
@@ -141,17 +291,8 @@ class CollectionType{
   static const TEMP = "temp";
   static const PULSE = "pulse";
   static const SPO2 = "spo2";
-  static const GLUCOSE = "glucose";
-  static const weight = 'weight';
 }
 
-class NavigationTitles{
-  static const SIGN_UP = "Sign Up";
-  static const LOGIN = "Login";
-  static const HOME_PAGE = "Home";
-  static const DASHBOARD = "Dashboard";
-
-}
 class Titles{
   static const APP_NAME = "Remotecare";
   static const SIGN_UP = "Sign Up";
@@ -162,7 +303,6 @@ class Titles{
   static const VERIFY_OTP_TITLE = "Verify OTP";
   static const VERIFY = "Verify";
   static const READINGS = "Take Reading";
-  static const HISTORY = "History";
   static const PROCEED = "Proceed";
   static const LOGIN_with_mobile = "Login with Phone Number";
   static const LOGIN_DESC = "Please enter your login details";

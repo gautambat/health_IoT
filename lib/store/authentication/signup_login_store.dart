@@ -1,24 +1,15 @@
-import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:mobx/mobx.dart';
-import 'package:provider/provider.dart';
-import 'package:remote_care/constants/strings.dart';
-import 'package:remote_care/constants/values.dart';
-import 'package:remote_care/database/firestore/user_dao.dart';
+import 'package:remote_care/constants/constants.dart';
 import 'package:remote_care/models/role.dart';
-//import 'package:remote_care/models/role.dart';
-import 'package:remote_care/models/user.dart';
 import 'package:remote_care/screens/authentication/otp_verification_screen.dart';
 import 'package:remote_care/service/firebase_auth_service.dart';
 import 'package:remote_care/utils/store_mixin.dart';
 import 'package:remote_care/utils/utils.dart';
-import 'package:remote_care/widgets/drawer_patient.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 part 'signup_login_store.g.dart';
 

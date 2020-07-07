@@ -5,23 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:provider/provider.dart';
-import 'package:remote_care/constants/colors.dart';
-import 'package:remote_care/constants/strings.dart';
-import 'package:remote_care/constants/styles.dart';
-import 'package:remote_care/constants/values.dart';
+import 'package:remote_care/constants/constants.dart';
 import 'package:remote_care/models/user.dart';
 import 'package:remote_care/screens/main/base_state.dart';
 import 'package:remote_care/store/dashboard/patient_registration_store.dart';
-import 'package:remote_care/utils/utils.dart';
 import 'package:remote_care/widgets/base/base_widgets.dart';
-import 'package:http/http.dart';
-import 'dart:convert';
-import 'dart:async';
-
-import '../../constants/strings.dart';
-import '../../constants/strings.dart';
-import '../../database/firestore/user_dao.dart';
 import '../../widgets/base/base_widgets.dart';
 
 
@@ -41,13 +29,6 @@ class _PatientProfileScreenState extends BaseState<PatientProfileScreen> {
   GlobalKey<FormState> _formkey = new GlobalKey<FormState>();
   PatientRegistrationStore store =  new PatientRegistrationStore();
   User currentUser;
-  //ListsRecord cityList, stateList, relationList;
-  List<String> dummy = new List();
-  //List<Doctor> doctorList;
-  //List<User> user;
-  //String url;
-  //bool isRegisterd = true;
-  //static String dob = '';
   var inputFormatters = [
     LengthLimitingTextInputFormatter(10),
     WhitelistingTextInputFormatter.digitsOnly,
@@ -56,22 +37,7 @@ class _PatientProfileScreenState extends BaseState<PatientProfileScreen> {
     LengthLimitingTextInputFormatter(30),
     WhitelistingTextInputFormatter(RegexConst.nameRegExp)
   ];
-  var addressInputFormatter = [
-    LengthLimitingTextInputFormatter(40),
-    WhitelistingTextInputFormatter(RegexConst.addressRegExp)
-  ];
-  var textNumberInputFormatter = [
-    LengthLimitingTextInputFormatter(20),
-    WhitelistingTextInputFormatter(RegexConst.textNumberRegExp)
-  ];
-  var zipFormatters = [
-    LengthLimitingTextInputFormatter(6),
-    WhitelistingTextInputFormatter.digitsOnly,
-  ];
-  var aadharFormatters = [
-    LengthLimitingTextInputFormatter(12),
-    WhitelistingTextInputFormatter.digitsOnly,
-  ];
+
 
   @override
   void initState() {

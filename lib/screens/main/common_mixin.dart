@@ -1,22 +1,10 @@
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:logging/logging.dart';
 import 'package:progress_dialog/progress_dialog.dart';
-import 'package:provider/provider.dart';
-import 'package:remote_care/constants/strings.dart';
+import 'package:remote_care/constants/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toast/toast.dart';
-import 'package:file/file.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:file/local.dart';
-import 'dart:io' as io;
-import 'package:http/http.dart' as http;
 
-////CommonMixin
-/// @author Yakub.
-///
-///  Mixin which shares the common functionality with the BaseState
-///  Few of its includes Toast, and Route Navigation,Logger and Firebase logging
 mixin CommonMixin {
 
   BuildContext getContext();

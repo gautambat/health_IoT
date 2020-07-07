@@ -1,6 +1,6 @@
 
 import 'package:flutter/cupertino.dart';
-import 'package:remote_care/constants/strings.dart';
+import 'package:remote_care/constants/constants.dart';
 import 'package:remote_care/models/bp_record.dart';
 import 'package:remote_care/models/pulse_record.dart';
 import 'package:remote_care/models/spo2_record.dart';

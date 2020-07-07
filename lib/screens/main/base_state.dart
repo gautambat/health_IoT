@@ -5,10 +5,7 @@ import 'package:after_layout/after_layout.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:remote_care/constants/borders.dart';
-import 'package:remote_care/constants/colors.dart';
-import 'package:remote_care/constants/styles.dart';
-import 'package:remote_care/constants/values.dart';
+import 'package:remote_care/constants/constants.dart';
 import 'package:remote_care/widgets/base/base_widgets.dart';
 
 import 'common_mixin.dart';

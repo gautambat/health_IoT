@@ -4,14 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:localstorage/localstorage.dart';
-import 'package:remote_care/constants/styles.dart';
-import 'package:remote_care/constants/values.dart';
+import 'package:remote_care/constants/constants.dart';
 import 'package:remote_care/models/user.dart';
 import 'package:remote_care/screens/authentication/signup_login_screen.dart';
 import 'package:remote_care/screens/dashboard/pat_profile.dart';
 import 'package:remote_care/service/firebase_auth_service.dart';
 
-import '../../constants/styles.dart';
 import '../drawer_patient.dart';
 
 mixin BaseWidgets {

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:remote_care/constants/styles.dart';
-import 'package:remote_care/constants/values.dart';
+import 'package:remote_care/constants/constants.dart';
 import 'package:remote_care/models/admin.dart';
 import 'package:remote_care/screens/main/base_state.dart';
 import 'package:remote_care/service/firestore_service.dart';

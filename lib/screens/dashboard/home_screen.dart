@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:remote_care/constants/strings.dart';
-import 'package:remote_care/constants/values.dart';
+import 'package:remote_care/constants/constants.dart';
 import 'package:remote_care/models/user.dart';
 import 'package:remote_care/screens/dashboard/dashboard_screen.dart';
 import 'package:remote_care/screens/main/base_state.dart';

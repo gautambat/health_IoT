@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:provider/provider.dart';
-import 'package:remote_care/constants/colors.dart';
-import 'package:remote_care/constants/strings.dart';
+import 'package:remote_care/constants/constants.dart';
 import 'package:remote_care/database/firestore/admin_dao.dart';
 import 'package:remote_care/database/firestore/user_dao.dart';
 import 'package:remote_care/models/admin.dart';
@@ -17,14 +16,6 @@ import 'package:flutter/cupertino.dart';
 
 import '../dashboard/home_screen.dart';
 
-
-
-
-
-/// Builds the signed-in or non signed-in UI, depending on the user snapshot.
-/// This widget should be below the [MaterialApp].
-/// An [AuthWidgetBuilder] ancestor is required for this widget to work.
-/// Note: this class used to be called [LandingPage].
 class AuthWidget extends StatelessWidget {
   var role;
   String platformAppStoreUrl;
@@ -68,7 +59,6 @@ class AuthWidget extends StatelessWidget {
               if (snapshot.hasData) {
                 Admin admin = snapshot.data;
                 print(admin.toJson());
-                //log("Dcotor:::::"+userDetails.toJson().toString());
                 if (admin != null &&
                     admin.uId != null) {
                   Provider<Admin>.value(value: admin);
@@ -81,40 +71,6 @@ class AuthWidget extends StatelessWidget {
 
             }
         );
-        /*return FutureBuilder<Doctor>(
-            future: getDoctor(userSnapshot.data.uId),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Container(
-                    color: AppColors.white,
-                    child: Container(
-                        width: 50,
-                        height: 50,
-                        child: Center(child: CircularProgressIndicator())));
-              }
-              if (snapshot.hasData) {
-                Doctor userDetails = snapshot.data;
-                //log("Dcotor:::::"+userDetails.toJson().toString());
-                if (userDetails != null &&
-                    userDetails.uId != null &&
-                    userDetails.isRegistered) {
-                  Provider<Doctor>.value(value: userDetails);
-                  return DefaultMargin(
-                    padding: EdgeInsets.all(0),
-                    child: DoctorDashBoardScreen(userDetails: userDetails),
-                  );
-                } else {
-                  return DoctorRegistration(userSnapshot.data);
-                }
-              } else {
-                return DoctorRegistration(userSnapshot.data);
-              }
-//              return Container(
-//                  color: AppColors.white,
-//                  child:Container(width:50,
-//                      height:50,child:Center(child:CircularProgressIndicator())));
-            });*/
-        // doctor login
       } else {
         return FutureBuilder(
             future: getUser(userSnapshot.data.uId), //UserDao().getUserByMobile(userSnapshot.data.mobile),
@@ -143,13 +99,6 @@ class AuthWidget extends StatelessWidget {
     }
   }
 
-  /*Future<User> getUserByMobileNumber(mobile) async {
-    List<User> userDetails = await UserDao().getUserByMobile(mobile);
-    if (userDetails != null && userDetails.isNotEmpty) {
-      return await initPatient(userDetails[0]);
-    }
-    return null;
-  }*/
   Future<User> getUser(uId) async {
     User userDetails = await UserDao(uid: uId).getUser();
     if (userDetails != null) {
@@ -162,13 +111,6 @@ class AuthWidget extends StatelessWidget {
     Admin admin = await AdminDao(uid: uId).getAdmin();
 
   }
-  /*Future<Doctor> getDoctorByMobileNumber(mobile) async {
-    List<Doctor> userDetails = await DoctorDao().getUserDoctorByMobile(mobile);
-    if (userDetails != null && userDetails.isNotEmpty) {
-      return await initDoctor(userDetails[0]);
-    }
-    return null;
-  }*/
 
   initPatient(user) async {
     var pushToken = await Utils.instance.getPushToken();
