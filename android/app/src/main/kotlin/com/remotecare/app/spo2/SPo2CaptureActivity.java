@@ -35,7 +35,7 @@ public class SPo2CaptureActivity extends BaseActivity implements ParseRunnable.O
     public TextView spo2,pulse;
     OxiMeterData oxiMeterData;
     List<OxiMeterData> oxiMeterDataList;
-//    PatientData patientData;
+    //    PatientData patientData;
     Button saveOxiDataButton,connectionOxiButton;
     RelativeLayout spoeReadingLayout;
 
@@ -60,7 +60,7 @@ public class SPo2CaptureActivity extends BaseActivity implements ParseRunnable.O
 //        FireStoreHelper.getInstance().addPatientData(patientData);
         oxiMeterDataList = new ArrayList<>();
         oxiMeterData = new OxiMeterData();
-       ImageView imageview = findViewById(R.id.imageview);
+        ImageView imageview = findViewById(R.id.imageview);
 
         imageview.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +88,7 @@ public class SPo2CaptureActivity extends BaseActivity implements ParseRunnable.O
                     intent.putExtras(bundle);
                     setResult(1,intent);
                     finish();
-                    Toast.makeText(SPo2CaptureActivity.this, "Data Saved Successfully and the same will be reported to doctor", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SPo2CaptureActivity.this, "Data Saved Successfully", Toast.LENGTH_SHORT).show();
 //                    oxiMeterData.save();
 
                 }
@@ -170,10 +170,10 @@ public class SPo2CaptureActivity extends BaseActivity implements ParseRunnable.O
 
             @Override
             public void run() {
-                    pulse.setText("" + value);
-                    Log.d(TAG, "pulse:" + value);
-                    oxiMeterData.setPulse(value);
-                   // oxiMeterData.setRecordedTime(System.currentTimeMillis());
+                pulse.setText("" + value);
+                Log.d(TAG, "pulse:" + value);
+                oxiMeterData.setPulse(value);
+                // oxiMeterData.setRecordedTime(System.currentTimeMillis());
 
             }
         });
@@ -191,7 +191,7 @@ public class SPo2CaptureActivity extends BaseActivity implements ParseRunnable.O
                     spo2.setText("" + value);
                     Log.d(TAG, "Spo2:" + value);
                     oxiMeterData.setSpo2(value);
-                   // oxiMeterData.setRecordedTime(System.currentTimeMillis());
+                    // oxiMeterData.setRecordedTime(System.currentTimeMillis());
                 }
 
             }
@@ -212,7 +212,7 @@ public class SPo2CaptureActivity extends BaseActivity implements ParseRunnable.O
     protected void onStop() {
         super.onStop();
         if(flowDisposable!=null)
-        flowDisposable.dispose();
+            flowDisposable.dispose();
         rxBleClient = null;
 
     }
@@ -224,7 +224,7 @@ public class SPo2CaptureActivity extends BaseActivity implements ParseRunnable.O
             flowDisposable.dispose();
 //        if(receiver!= null)
 //            unregisterReceiver(receiver);
-       // rxBleClient = null;
+        // rxBleClient = null;
     }
 
     public void onConnectClicked(View view) {

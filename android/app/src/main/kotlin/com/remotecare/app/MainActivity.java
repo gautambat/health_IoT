@@ -1,4 +1,3 @@
-
 package com.remotecare.app;
 
 import android.content.Intent;
@@ -24,7 +23,7 @@ public class MainActivity extends FlutterActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // GeneratedPluginRegistrant.registerWith(MainActivity.this);
+        // GeneratedPluginRegistrant.registerWith(MainActivity.this);
         new MethodChannel(getFlutterEngine().getDartExecutor(), CHANNEL, JSONMethodCodec.INSTANCE).setMethodCallHandler(
                 (call, result) -> {
                     if(call.method.equals("fromSp")){

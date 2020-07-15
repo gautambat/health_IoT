@@ -12,14 +12,14 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-<!--        <androidx.appcompat.widget.Toolbar-->
-<!--            android:id="@+id/toolbar"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="?attr/actionBarSize"-->
-<!--            android:background="?attr/colorPrimary"-->
-<!--            app:title="Spo2 Readings"-->
-<!--            app:navigationIcon="@drawable/back"-->
-<!--            app:popupTheme="@style/AppTheme.PopupOverlay" />-->
+        <!--        <androidx.appcompat.widget.Toolbar-->
+        <!--            android:id="@+id/toolbar"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="?attr/actionBarSize"-->
+        <!--            android:background="?attr/colorPrimary"-->
+        <!--            app:title="Spo2 Readings"-->
+        <!--            app:navigationIcon="@drawable/back"-->
+        <!--            app:popupTheme="@style/AppTheme.PopupOverlay" />-->
 
 
         <RelativeLayout
@@ -102,56 +102,56 @@
         android:layout_gravity="center_vertical"
         android:gravity="top"
         android:visibility="gone">
-    <LinearLayout
-        android:id="@+id/oxiLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
-
         <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-            android:layout_margin="20dp">
-        <TextView
+            android:id="@+id/oxiLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:text="SP02"/>
-        <TextView
-            android:id="@+id/spo2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="50sp"
-            android:textColor="@android:color/holo_red_dark"
-            android:text="00"/>
-        </LinearLayout>
+            android:orientation="horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_margin="20dp">
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:text="Pulse"/>
-            <TextView
-                android:id="@+id/pulse"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:text="SP02"/>
+                <TextView
+                    android:id="@+id/spo2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="50sp"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:text="00"/>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="50sp"
-                android:textColor="@android:color/holo_blue_dark"
-                android:text="00"/>
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_margin="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="25sp"
+                    android:text="Pulse"/>
+                <TextView
+                    android:id="@+id/pulse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="50sp"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:text="00"/>
+            </LinearLayout>
+
+
         </LinearLayout>
-
-
-    </LinearLayout>
         <Button
             android:id="@+id/saveOxiDataButton"
             android:layout_width="wrap_content"
@@ -162,12 +162,12 @@
             android:text="Save" />
     </RelativeLayout>
 
-<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--        android:id="@+id/fab"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="bottom|end"-->
-<!--        android:layout_margin="@dimen/fab_margin"-->
-<!--        app:srcCompat="@android:drawable/ic_popup_sync" />-->
+    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+    <!--        android:id="@+id/fab"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="bottom|end"-->
+    <!--        android:layout_margin="@dimen/fab_margin"-->
+    <!--        app:srcCompat="@android:drawable/ic_popup_sync" />-->
 
 </LinearLayout>
