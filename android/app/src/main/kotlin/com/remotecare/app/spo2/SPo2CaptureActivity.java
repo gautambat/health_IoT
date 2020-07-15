@@ -50,14 +50,6 @@ public class SPo2CaptureActivity extends BaseActivity implements ParseRunnable.O
         connectionOxiButton = findViewById(R.id.connectionOxiButton);
         spoeReadingLayout = findViewById(R.id.spoeReadingLayout);
         rxBleClient = RxBleClient.create(this);
-//        scanForDevices();
-//        patientData = new PatientData();
-//        patientData.setName("Atchuta");
-//        patientData.setDoctorId("123456");
-//        patientData.setpId("1");
-//        patientData.setAge("26");
-//        patientData.setMobileNumber("9999999999");
-//        FireStoreHelper.getInstance().addPatientData(patientData);
         oxiMeterDataList = new ArrayList<>();
         oxiMeterData = new OxiMeterData();
         ImageView imageview = findViewById(R.id.imageview);
