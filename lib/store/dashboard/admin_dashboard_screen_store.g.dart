@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'doctor_dashboard_screen_store.dart';
+part of 'admin_dashboard_screen_store.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,9 +8,9 @@ part of 'doctor_dashboard_screen_store.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$DoctorDashBoardScreenStore on DoctorDashBoardScreenStoreBase, Store {
+mixin _$AdminDashBoardScreenStore on AdminDashBoardScreenStoreBase, Store {
   final _$searchedPatientListAtom =
-      Atom(name: 'DoctorDashBoardScreenStoreBase.searchedPatientList');
+      Atom(name: 'AdminDashBoardScreenStoreBase.searchedPatientList');
 
   @override
   List<String> get searchedPatientList {
@@ -25,7 +25,7 @@ mixin _$DoctorDashBoardScreenStore on DoctorDashBoardScreenStoreBase, Store {
     });
   }
 
-  final _$showMoreAtom = Atom(name: 'DoctorDashBoardScreenStoreBase.showMore');
+  final _$showMoreAtom = Atom(name: 'AdminDashBoardScreenStoreBase.showMore');
 
   @override
   bool get showMore {
@@ -41,7 +41,7 @@ mixin _$DoctorDashBoardScreenStore on DoctorDashBoardScreenStoreBase, Store {
   }
 
   final _$isInternetAtom =
-      Atom(name: 'DoctorDashBoardScreenStoreBase.isInternet');
+      Atom(name: 'AdminDashBoardScreenStoreBase.isInternet');
 
   @override
   bool get isInternet {
@@ -56,7 +56,7 @@ mixin _$DoctorDashBoardScreenStore on DoctorDashBoardScreenStoreBase, Store {
     });
   }
 
-  final _$isViewedAtom = Atom(name: 'DoctorDashBoardScreenStoreBase.isViewed');
+  final _$isViewedAtom = Atom(name: 'AdminDashBoardScreenStoreBase.isViewed');
 
   @override
   bool get isViewed {
@@ -71,29 +71,28 @@ mixin _$DoctorDashBoardScreenStore on DoctorDashBoardScreenStoreBase, Store {
     });
   }
 
-  final _$DoctorDashBoardScreenStoreBaseActionController =
-      ActionController(name: 'DoctorDashBoardScreenStoreBase');
+  final _$AdminDashBoardScreenStoreBaseActionController =
+      ActionController(name: 'AdminDashBoardScreenStoreBase');
 
   @override
   void onSearchTextChanged(String value, List<User> patientUsers) {
-    final _$actionInfo =
-        _$DoctorDashBoardScreenStoreBaseActionController.startAction(
-            name: 'DoctorDashBoardScreenStoreBase.onSearchTextChanged');
+    final _$actionInfo = _$AdminDashBoardScreenStoreBaseActionController
+        .startAction(name: 'AdminDashBoardScreenStoreBase.onSearchTextChanged');
     try {
       return super.onSearchTextChanged(value, patientUsers);
     } finally {
-      _$DoctorDashBoardScreenStoreBaseActionController.endAction(_$actionInfo);
+      _$AdminDashBoardScreenStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void clear() {
-    final _$actionInfo = _$DoctorDashBoardScreenStoreBaseActionController
-        .startAction(name: 'DoctorDashBoardScreenStoreBase.clear');
+    final _$actionInfo = _$AdminDashBoardScreenStoreBaseActionController
+        .startAction(name: 'AdminDashBoardScreenStoreBase.clear');
     try {
       return super.clear();
     } finally {
-      _$DoctorDashBoardScreenStoreBaseActionController.endAction(_$actionInfo);
+      _$AdminDashBoardScreenStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 

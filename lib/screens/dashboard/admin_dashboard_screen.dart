@@ -10,21 +10,21 @@ import 'package:remote_care/screens/authentication/signup_login_screen.dart';
 import 'package:remote_care/screens/dashboard/home_screen.dart';
 import 'package:remote_care/screens/main/base_state.dart';
 import 'package:remote_care/service/firebase_auth_service.dart';
-import 'package:remote_care/store/dashboard/doctor_dashboard_screen_store.dart';
+import 'package:remote_care/store/dashboard/admin_dashboard_screen_store.dart';
 
-class DoctorDashBoardScreen extends StatefulWidget {
+class AdminDashBoardScreen extends StatefulWidget {
   final Admin userDetails;
-  DoctorDashBoardScreen({Key key,@required this.userDetails}) : super(key: key);
+  AdminDashBoardScreen({Key key,@required this.userDetails}) : super(key: key);
 
   @override
-  _DoctorDashBoardScreenState createState() {
-    return _DoctorDashBoardScreenState();
+  _AdminDashBoardScreenState createState() {
+    return _AdminDashBoardScreenState();
   }
 }
 
-class _DoctorDashBoardScreenState extends BaseState<DoctorDashBoardScreen> {
+class _AdminDashBoardScreenState extends BaseState<AdminDashBoardScreen> {
   var searchController =new TextEditingController();
-  DoctorDashBoardScreenStore store = new DoctorDashBoardScreenStore();
+  AdminDashBoardScreenStore store = new AdminDashBoardScreenStore();
   //var length;
   List<User> allUsersList = new List();
   List<User> searchedUserList = new List();
@@ -49,13 +49,8 @@ class _DoctorDashBoardScreenState extends BaseState<DoctorDashBoardScreen> {
   void initState() {
     super.initState();
     userDetails = widget.userDetails;
-    //isApproved = userDetails.isApproved??false;
     uId = userDetails.uId;
     appointmentEnabled = storage.getItem('patient_appointment');
-    //appointmentEnabled = temp['appointment'];
-    //initDoctor();
-    //getAppBar();
-    //print('test');
   }
 
 
@@ -116,17 +111,12 @@ class _DoctorDashBoardScreenState extends BaseState<DoctorDashBoardScreen> {
                                   stream: UserDao().collectionStremUsers(),
                                   builder: (context,snapshot){
                                     if(snapshot.hasData){
-
-                                      //patientUsers = snapshot.data;
+;
                                       allUsersList = snapshot.data;
                                       print(allUsersList.toList());
                                       if(allUsersList.length>0)
                                       {
 
-                                        //taggedOrAlertedPatientUsers(patientUsers);
-
-
-                                        //allUsers();
                                         return Column(
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -159,12 +149,6 @@ class _DoctorDashBoardScreenState extends BaseState<DoctorDashBoardScreen> {
 
                             ]),
 
-//                          Visibility(
-//                              visible: (!searched &&!noPatients),
-//                              child:Column(
-//                                  mainAxisAlignment: MainAxisAlignment.end,
-//                                  crossAxisAlignment: CrossAxisAlignment.end,
-//                                  children: <Widget>[addPatientsContainer()])),
                           ])))
                 ],))
 
@@ -311,13 +295,6 @@ class _DoctorDashBoardScreenState extends BaseState<DoctorDashBoardScreen> {
     store.showProgress(context);
     User selectedPatientUser;
 
-//    if(allUsersList.length>0){
-//      for(int i=0;i<allUsersList.length;i++){
-//        if(patientUser.uid== allUsersList[i].uid){
-//          selectedPatientUser = allUsersList[i];
-//        }
-//      }
-//    }
     log(patientUser.uId);
     selectedPatientUser = await UserDao(uid: patientUser.uId).getUser();
     if(selectedPatientUser!=null)
@@ -335,16 +312,9 @@ class _DoctorDashBoardScreenState extends BaseState<DoctorDashBoardScreen> {
       store.hideProgress(context);
       showToast(message: ErrorMessages.PATIENT_DETAILS_NOT_Found);
     }
-    //log(user.toJson());
 
 
 
-
-//  }
-//  else{
-//    store.hideProgress();
-//    store.showDlg(ErrorMessages.NO_INTERNET_CONNECTION,context);
-//  }
 
 
   }

@@ -142,33 +142,14 @@ abstract class PatientRegistrationStoreBase with Store, StoreMixin {
         ..firstName = firstNameController.text
         ..lastName = lastNameController.text
         ..name = firstNameController.text + ' ' + lastNameController.text
-        /*..dob = dateOfBirth
-        ..date = dateOfBirthController.text*/
         ..imageUrl = imageUrl
         ..createdOn = Timestamp.now();
-//        ..gender = getSelectedGender(selectedGender)
-//        ..adharNumber = aadharNumberController.text;
-
-      //..linkedDoctors.add(selectedDoctor.dId);
-
-
-
-      /*AddressBean address = AddressBean();
-      address
-        ..address = addressController.text
-        ..city = cityController.text
-        ..state = stateController.text
-        ..zipCode = zipCodeController.text;
-
-      currentUser.address = address;*/
 
       var pushToken = await Utils.instance.getPushToken();
-      //var deviceId = await Utils.instance.getDeviceId();
       OtherInfoBean otherInfo = OtherInfoBean();
 
       otherInfo
         ..pushToken = pushToken;
-        //..deviceId = deviceId;
 
       currentUser.otherInfo = otherInfo;
       await UserDao(uid: currentUser.uId).createUser(currentUser).then((value) {
@@ -178,7 +159,6 @@ abstract class PatientRegistrationStoreBase with Store, StoreMixin {
 
 
 
-//    showProgress();
 
     }
     else {
@@ -186,14 +166,6 @@ abstract class PatientRegistrationStoreBase with Store, StoreMixin {
     }
   }
 
-
-
-
-
-//  getDoctorIOByName(name){
-//    Doctor doctor = doctors.singleWhere((doctor) => doctor.name == name);
-//    return doctor;
-//  }
 
   getSelectedGender(index){
     switch (index) {
@@ -226,43 +198,6 @@ abstract class PatientRegistrationStoreBase with Store, StoreMixin {
     }
 
   }
-
-  /*@action
-  Future cropImage(File image) async {
-    File croppedFile = (await ImageCropper.cropImage(
-        sourcePath: image.path,
-        aspectRatioPresets: Platform.isAndroid ? [
-          CropAspectRatioPreset.square,
-          CropAspectRatioPreset.ratio3x2,
-          CropAspectRatioPreset.original,
-          CropAspectRatioPreset.ratio4x3,
-          CropAspectRatioPreset.ratio16x9
-        ]
-            : [
-          CropAspectRatioPreset.original,
-          CropAspectRatioPreset.square,
-          CropAspectRatioPreset.ratio3x2,
-          CropAspectRatioPreset.ratio4x3,
-          CropAspectRatioPreset.ratio5x3,
-          CropAspectRatioPreset.ratio5x4,
-          CropAspectRatioPreset.ratio7x5,
-          CropAspectRatioPreset.ratio16x9
-        ],
-
-        androidUiSettings: AndroidUiSettings(
-            toolbarTitle: 'Cropper',
-            toolbarColor: Colors.blue[800],
-            toolbarWidgetColor: Colors.white,
-            initAspectRatio: CropAspectRatioPreset.original,
-            lockAspectRatio: false),
-        iosUiSettings: IOSUiSettings(
-          title: 'Cropper',
-        )
-    )
-    );
-    return croppedFile;
-
-  }*/
 
   @action
   Future<File> compressImage(File file) async {

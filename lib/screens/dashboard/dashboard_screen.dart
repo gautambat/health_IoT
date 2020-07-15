@@ -14,7 +14,7 @@ import 'package:remote_care/models/temp_record.dart';
 import 'package:remote_care/models/user.dart';
 import 'package:remote_care/screens/dashboard/Readings/patient_readings.dart';
 import 'package:remote_care/screens/main/base_state.dart';
-import 'package:remote_care/store/dashboard/doctor_patient_view_screen_store.dart';
+import 'package:remote_care/store/dashboard/dashboard_screen_store.dart';
 import 'package:remote_care/widgets/default_margin.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -29,7 +29,7 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends BaseState<DashboardScreen> {
-  DoctorPatientViewScreenStore store = new DoctorPatientViewScreenStore();
+  DashboardScreenStore store = new DashboardScreenStore();
 
   List<User> userRecords;
 
@@ -46,7 +46,6 @@ class _DashboardScreenState extends BaseState<DashboardScreen> {
   bool permissions;
   bool permissionsLocal;
 
-  //Future<List<Doctor>> doctors;
 
   var role, roleValue;
 
@@ -63,13 +62,11 @@ class _DashboardScreenState extends BaseState<DashboardScreen> {
 
   initPatient() async {
     pushToken = await getPushToken();
-    //deviceId = await getDeviceId();
     OtherInfoBean otherInfo = OtherInfoBean();
     otherInfo
       ..pushToken = pushToken
       ..deviceId = deviceId;
     user.otherInfo = otherInfo;
-    //log("User Details:bnefore write " + user.toJson().toString());
     await UserDao(uid: user.uId)
         .createUser(user)
         .then((value) => log("Successfully updated"));

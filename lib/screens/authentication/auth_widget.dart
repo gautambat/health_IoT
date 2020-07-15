@@ -9,7 +9,7 @@ import 'package:remote_care/models/admin.dart';
 import 'package:remote_care/models/user.dart';
 import 'package:remote_care/screens/authentication/patient_registration_screen.dart';
 import 'package:remote_care/screens/authentication/signup_login_screen.dart';
-import 'package:remote_care/screens/dashboard/doctor_dash_board_screen.dart';
+import 'package:remote_care/screens/dashboard/admin_dashboard_screen.dart';
 import 'package:remote_care/utils/utils.dart';
 import 'package:remote_care/widgets/default_margin.dart';
 import 'package:flutter/cupertino.dart';
@@ -64,7 +64,7 @@ class AuthWidget extends StatelessWidget {
                   Provider<Admin>.value(value: admin);
                   return DefaultMargin(
                     padding: EdgeInsets.all(0),
-                    child: DoctorDashBoardScreen(userDetails: admin),
+                    child: AdminDashBoardScreen(userDetails: admin),
                   );
                 }
               }

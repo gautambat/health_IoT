@@ -2,11 +2,11 @@ import 'package:mobx/mobx.dart';
 import 'package:remote_care/models/user.dart';
 import 'package:remote_care/utils/store_mixin.dart';
 
-part 'doctor_dashboard_screen_store.g.dart';
+part 'admin_dashboard_screen_store.g.dart';
 
-class DoctorDashBoardScreenStore =  DoctorDashBoardScreenStoreBase with _$DoctorDashBoardScreenStore;
+class AdminDashBoardScreenStore =  AdminDashBoardScreenStoreBase with _$AdminDashBoardScreenStore;
 
-abstract class DoctorDashBoardScreenStoreBase with Store,StoreMixin{
+abstract class AdminDashBoardScreenStoreBase with Store,StoreMixin{
   @observable
   List<String> searchedPatientList = new List();
   @observable

@@ -232,13 +232,6 @@ spo2Changed() {
   @action
   Future<void> tempClicked(String uid, BuildContext context) async {
     String userId= user.uId;
-//    if (uid != null) {
-//      userId = uid;
-//    }
-//    else {
-//      User user = Provider.of<User>(context, listen: false);
-//      userId = user.uid;
-//    }
     emptyTemp = false;
 
 
@@ -291,13 +284,7 @@ Future<void> deviceValuesReading(int selectedTab, BuildContext context) async {
           //print("result"+result);
           var spo2record = Spo2Record.fromMap(data: parsedJson);
             spo2Controller.text = spo2record.spo2.toString();
-            //String pulse = spo2record.pulse.toString();
-            /*if(pulse!=null){
-              fromPulseReading = true;
-              notEmptyFromDevicePulse = true;
-              pulseFromDeviceController.text = spo2record.pulse.toString();
-             onPulseFromDeviceChanged();
-            }*/
+
           if(spo2Controller.text.isNotEmpty)
             spo2Changed();
 
@@ -328,13 +315,6 @@ Future<void> deviceValuesReading(int selectedTab, BuildContext context) async {
           //print("result"+result);
           var pulserecord = PulseRecord.fromMap(data: parsedJson);
           pulseController.text = pulserecord.pulse.toString();
-          /*String spo2 = pulserecord.spo2.toString();
-          if(spo2!=null){
-            fromSpo2Reading = true;
-            notEmptyFromDeviceSpo2 = true;
-            spo2FromDeviceController.text = spo2;
-            onSpo2FromDeviceChanged();
-          }*/
           if(pulseController.text.isNotEmpty)
             onPulseChanged();
 
@@ -378,17 +358,7 @@ Future<void> deviceValuesReading(int selectedTab, BuildContext context) async {
       await RecordDao(uid: user.uId).addPulseRecord(pulseRecord).then((value) {
         pulseController.text="";
         saveShowDlg(ErrorMessages.PULSE_DETAILS_SAVED, context);
-       /*if(!fromDevicePulse)
-        {
-          pulseController.text="";
-          saveShowDlg(ErrorMessages.PULSE_DETAILS_SAVED, context);
-        }
-       else
-      {
-        pulseFromDeviceController.text="";
-        saveShowDlg(ErrorMessages.PULSE_SPO2_DETAILS_SAVED, context);
 
-      }*/
         text = "";
 
         //showToast(message: "Pulse Details Saved");

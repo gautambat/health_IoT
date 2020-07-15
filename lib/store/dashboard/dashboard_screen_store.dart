@@ -13,11 +13,11 @@ import 'package:remote_care/screens/dashboard/Readings/patient_readings.dart';
 import 'package:remote_care/utils/store_mixin.dart';
 import 'package:remote_care/constants/constants.dart';
 
-part 'doctor_patient_view_screen_store.g.dart';
+part 'dashboard_screen_store.g.dart';
 
-class DoctorPatientViewScreenStore =  DoctorPatientViewScreenStoreBase with _$DoctorPatientViewScreenStore;
+class DashboardScreenStore =  DashboardScreenStoreBase with _$DashboardScreenStore;
 
-abstract class DoctorPatientViewScreenStoreBase with Store,StoreMixin{
+abstract class DashboardScreenStoreBase with Store,StoreMixin{
 
   String differenceInYears="";
 
