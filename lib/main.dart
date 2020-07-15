@@ -22,10 +22,6 @@ import 'screens/authentication/auth_widget_builder.dart';
 
 void main(){
   WidgetsFlutterBinding.ensureInitialized();
-  // Set `enableInDevMode` to true to see reports while in debug mode
-  // This is only to be used for confirming that reports are being
-  // submitted as expected. It is not intended to be used for everyday
-  // development.
   Crashlytics.instance.enableInDevMode = true;
 
   // Pass all uncaught errors to Crashlytics.
@@ -38,9 +34,6 @@ void main(){
       statusBarIconBrightness:Brightness.light,
       statusBarBrightness:Brightness.light
 
-//      statusBarIconBrightness: Utils.androidWhiteIcon,/* set Status bar icons color in Android devices.*/
-//
-//      statusBarBrightness: Utils.iOSWhiteDarkIcon)/* set Status bar icon color in iOS. */
   ));
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp
   ]).then((_) async{
@@ -108,20 +101,13 @@ class _CureSquadAppState extends State<CureSquadApp> {
         Provider<FirebaseAuthService>(
           create: widget.authServiceBuilder,
         ),
-//        Provider<Role>(
-//          create: (_) => Role(role:"doctor"),
-//        ),
       ],
       child: AuthWidgetBuilder(
         builder: (BuildContext context, AsyncSnapshot<User> userSnapshot) {
           return MaterialApp(
-//              navigatorObservers: <NavigatorObserver>[observer],
               debugShowCheckedModeBanner: false,
               localizationsDelegates: [
-//              const BackButtonTextDelegate(),
               ],
-//              home: SignUpLoginScreen(isLogin: true),
-//              home: PaymentScreen(),
               home: AuthWidget(userSnapshot: userSnapshot),
               theme: ThemeData(
                 pageTransitionsTheme: PageTransitionsTheme(builders: {

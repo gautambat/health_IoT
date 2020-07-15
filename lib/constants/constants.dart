@@ -270,10 +270,7 @@ class ErrorMessages{
   //readings
   static const BP_DETAILS_SAVED ="Bp  Details Saved";
   static const PULSE_DETAILS_SAVED ="Pulse  Details Saved";
-  static const PULSE_SPO2_DETAILS_SAVED ="Pulse and SPO2 Details Saved";
-  static const GLUCOSE_DETAILS_SAVED ="Glucose  Details Saved";
   static const TEMP_DETAILS_SAVED ="Temp  Details Saved";
-  static const WEIGHT_DETAILS_SAVED ="Weight Saved";
   static const SPO2_DETAILS_SAVED ="SPO2  Details Saved";
 
 }
