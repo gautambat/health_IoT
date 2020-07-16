@@ -4,12 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:mobx/mobx.dart';
-import 'package:remote_care/constants/constants.dart';
-import 'package:remote_care/models/role.dart';
-import 'package:remote_care/screens/authentication/otp_verification_screen.dart';
-import 'package:remote_care/service/firebase_auth_service.dart';
-import 'package:remote_care/utils/store_mixin.dart';
-import 'package:remote_care/utils/utils.dart';
+import 'package:health_iot/constants/constants.dart';
+import 'package:health_iot/models/role.dart';
+import 'package:health_iot/screens/authentication/otp_verification_screen.dart';
+import 'package:health_iot/service/firebase_auth_service.dart';
+import 'package:health_iot/utils/store_mixin.dart';
+import 'package:health_iot/utils/utils.dart';
 
 part 'signup_login_store.g.dart';
 
@@ -17,7 +17,7 @@ class SignUpLoginStore = SignUpLoginStoreBase with _$SignUpLoginStore;
 
 abstract class SignUpLoginStoreBase with Store, StoreMixin {
 
-  final LocalStorage storage = new LocalStorage('cure_squad');
+  final LocalStorage storage = new LocalStorage('health_iot');
 
   BuildContext context;
 

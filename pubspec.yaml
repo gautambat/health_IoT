@@ -1,5 +1,5 @@
-name: remote_care
-description: CureSquad app for both android and iOS
+name: health_iot
+description: Networks semester project
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -36,12 +36,12 @@ dependencies:
   jiffy: ^3.0.1
   double_back_to_close_app: ^1.2.0
   connectivity: ^0.4.2
-  #flutter_udid: ^1.0.1
   location: ^3.0.2
   flutter_image_compress: ^0.6.8
   localstorage: ^3.0.0
   progress_dialog: ^1.2.4
   pull_to_refresh: ^1.4.5
+  path_provider: ^1.6.11
 
 
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:remote_care/constants/constants.dart';
-import 'package:remote_care/models/user.dart';
+import 'package:health_iot/constants/constants.dart';
+import 'package:health_iot/models/user.dart';
 
 // ignore: non_constant_identifier_names
 Widget PatientDrawer(BuildContext context, User user) {

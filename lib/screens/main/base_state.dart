@@ -3,8 +3,8 @@ import 'package:after_layout/after_layout.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:remote_care/constants/constants.dart';
-import 'package:remote_care/widgets/base/base_widgets.dart';
+import 'package:health_iot/constants/constants.dart';
+import 'package:health_iot/widgets/base/base_widgets.dart';
 
 import 'common_mixin.dart';
 

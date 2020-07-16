@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:provider/provider.dart';
-import 'package:remote_care/constants/constants.dart';
-import 'package:remote_care/database/firestore/admin_dao.dart';
-import 'package:remote_care/database/firestore/user_dao.dart';
-import 'package:remote_care/models/admin.dart';
-import 'package:remote_care/models/user.dart';
-import 'package:remote_care/screens/authentication/patient_registration_screen.dart';
-import 'package:remote_care/screens/authentication/signup_login_screen.dart';
-import 'package:remote_care/screens/dashboard/admin_dashboard_screen.dart';
-import 'package:remote_care/widgets/default_margin.dart';
+import 'package:health_iot/constants/constants.dart';
+import 'package:health_iot/database/firestore/admin_dao.dart';
+import 'package:health_iot/database/firestore/user_dao.dart';
+import 'package:health_iot/models/admin.dart';
+import 'package:health_iot/models/user.dart';
+import 'package:health_iot/screens/authentication/patient_registration_screen.dart';
+import 'package:health_iot/screens/authentication/signup_login_screen.dart';
+import 'package:health_iot/screens/dashboard/admin_dashboard_screen.dart';
+import 'package:health_iot/widgets/default_margin.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../dashboard/home_screen.dart';
@@ -23,7 +23,7 @@ class AuthWidget extends StatelessWidget {
   bool isUpdateBoxShown = false;
   AuthWidget({Key key, @required this.userSnapshot}) : super(key: key);
   final AsyncSnapshot<User> userSnapshot;
-  LocalStorage storage = new LocalStorage('cure_squad');
+  LocalStorage storage = new LocalStorage('health_iot');
   @override
   Widget build(BuildContext context) {
     if (userSnapshot.connectionState == ConnectionState.active) {

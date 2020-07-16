@@ -1,6 +1,6 @@
 import 'package:mobx/mobx.dart';
-import 'package:remote_care/models/user.dart';
-import 'package:remote_care/utils/store_mixin.dart';
+import 'package:health_iot/models/user.dart';
+import 'package:health_iot/utils/store_mixin.dart';
 
 part 'admin_dashboard_screen_store.g.dart';
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:remote_care/models/user.dart';
-import 'package:remote_care/screens/dashboard/dashboard_screen.dart';
-import 'package:remote_care/screens/main/base_state.dart';
-import 'package:remote_care/widgets/default_margin.dart';
+import 'package:health_iot/models/user.dart';
+import 'package:health_iot/screens/dashboard/dashboard_screen.dart';
+import 'package:health_iot/screens/main/base_state.dart';
+import 'package:health_iot/widgets/default_margin.dart';
 
 import 'dashboard_screen.dart';
 

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:remote_care/constants/constants.dart';
-import 'package:remote_care/models/admin.dart';
-import 'package:remote_care/screens/main/base_state.dart';
-import 'package:remote_care/service/firestore_service.dart';
-import 'package:remote_care/store/authentication/signup_login_store.dart';
-import 'package:remote_care/widgets/custom_button.dart';
+import 'package:health_iot/constants/constants.dart';
+import 'package:health_iot/models/admin.dart';
+import 'package:health_iot/screens/main/base_state.dart';
+import 'package:health_iot/service/firestore_service.dart';
+import 'package:health_iot/store/authentication/signup_login_store.dart';
+import 'package:health_iot/widgets/custom_button.dart';
 
 class SignUpLoginScreen extends StatefulWidget {
   final bool isLogin;

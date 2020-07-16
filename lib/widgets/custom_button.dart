@@ -1,5 +1,5 @@
-import 'package:remote_care/constants/constants.dart';
-import 'package:remote_care/widgets/base/base_button.dart';
+import 'package:health_iot/constants/constants.dart';
+import 'package:health_iot/widgets/base/base_button.dart';
 
 ///Simple basic button with the [title]
 class CustomButton extends BaseButton {

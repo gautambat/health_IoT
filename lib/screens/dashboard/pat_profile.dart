@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:remote_care/constants/constants.dart';
-import 'package:remote_care/models/user.dart';
-import 'package:remote_care/screens/main/base_state.dart';
-import 'package:remote_care/store/dashboard/patient_registration_store.dart';
-import 'package:remote_care/widgets/base/base_widgets.dart';
+import 'package:health_iot/constants/constants.dart';
+import 'package:health_iot/models/user.dart';
+import 'package:health_iot/screens/main/base_state.dart';
+import 'package:health_iot/store/dashboard/patient_registration_store.dart';
+import 'package:health_iot/widgets/base/base_widgets.dart';
 import '../../widgets/base/base_widgets.dart';
 
 

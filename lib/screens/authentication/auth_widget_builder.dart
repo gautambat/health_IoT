@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:remote_care/models/user.dart';
-import 'package:remote_care/service/firebase_auth_service.dart';
+import 'package:health_iot/models/user.dart';
+import 'package:health_iot/service/firebase_auth_service.dart';
 
 /// Used to create user-dependent objects that need to be accessible by all widgets.
 /// This widgets should live above the [MaterialApp].

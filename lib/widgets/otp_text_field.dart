@@ -2,7 +2,7 @@ library pin_entry_text_field;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:remote_care/constants/constants.dart';
+import 'package:health_iot/constants/constants.dart';
 
 class OTPTextField extends StatefulWidget {
   final String lastPin;

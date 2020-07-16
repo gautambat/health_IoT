@@ -2,15 +2,15 @@
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
-import 'package:remote_care/constants/constants.dart';
-import 'package:remote_care/database/firestore/user_dao.dart';
-import 'package:remote_care/models/admin.dart';
-import 'package:remote_care/models/user.dart';
-import 'package:remote_care/screens/authentication/signup_login_screen.dart';
-import 'package:remote_care/screens/dashboard/home_screen.dart';
-import 'package:remote_care/screens/main/base_state.dart';
-import 'package:remote_care/service/firebase_auth_service.dart';
-import 'package:remote_care/store/dashboard/admin_dashboard_screen_store.dart';
+import 'package:health_iot/constants/constants.dart';
+import 'package:health_iot/database/firestore/user_dao.dart';
+import 'package:health_iot/models/admin.dart';
+import 'package:health_iot/models/user.dart';
+import 'package:health_iot/screens/authentication/signup_login_screen.dart';
+import 'package:health_iot/screens/dashboard/home_screen.dart';
+import 'package:health_iot/screens/main/base_state.dart';
+import 'package:health_iot/service/firebase_auth_service.dart';
+import 'package:health_iot/store/dashboard/admin_dashboard_screen_store.dart';
 
 class AdminDashBoardScreen extends StatefulWidget {
   final Admin userDetails;
@@ -39,7 +39,7 @@ class _AdminDashBoardScreenState extends BaseState<AdminDashBoardScreen> {
 
   var temp;
   bool appointmentEnabled;
-  LocalStorage storage = new LocalStorage('cure_squad');
+  LocalStorage storage = new LocalStorage('health_iot');
 
   //bool isApproved=true;
 

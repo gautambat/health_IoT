@@ -1,7 +1,7 @@
 
 
 import 'package:flutter/cupertino.dart';
-import 'package:remote_care/models/user.dart';
+import 'package:health_iot/models/user.dart';
 
 import '../../service/firestore_path.dart';
 import '../../service/firestore_service.dart';

@@ -5,14 +5,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobx/mobx.dart';
-import 'package:remote_care/constants/constants.dart';
-import 'package:remote_care/database/firestore/record_dao.dart';
-import 'package:remote_care/models/bp_record.dart';
-import 'package:remote_care/models/pulse_record.dart';
-import 'package:remote_care/models/spo2_record.dart';
-import 'package:remote_care/models/temp_record.dart';
-import 'package:remote_care/models/user.dart';
-import 'package:remote_care/utils/store_mixin.dart';
+import 'package:health_iot/constants/constants.dart';
+import 'package:health_iot/database/firestore/record_dao.dart';
+import 'package:health_iot/models/bp_record.dart';
+import 'package:health_iot/models/pulse_record.dart';
+import 'package:health_iot/models/spo2_record.dart';
+import 'package:health_iot/models/temp_record.dart';
+import 'package:health_iot/models/user.dart';
+import 'package:health_iot/utils/store_mixin.dart';
 
 part 'patient_readings_store.g.dart';
 

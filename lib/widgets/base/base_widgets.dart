@@ -4,11 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:localstorage/localstorage.dart';
-import 'package:remote_care/constants/constants.dart';
-import 'package:remote_care/models/user.dart';
-import 'package:remote_care/screens/authentication/signup_login_screen.dart';
-import 'package:remote_care/screens/dashboard/pat_profile.dart';
-import 'package:remote_care/service/firebase_auth_service.dart';
+import 'package:health_iot/constants/constants.dart';
+import 'package:health_iot/models/user.dart';
+import 'package:health_iot/screens/authentication/signup_login_screen.dart';
+import 'package:health_iot/screens/dashboard/pat_profile.dart';
+import 'package:health_iot/service/firebase_auth_service.dart';
 
 import '../drawer_patient.dart';
 
@@ -179,7 +179,7 @@ mixin BaseWidgets {
 
   var temp;
   bool appointmentEnabled;
-  LocalStorage storage = new LocalStorage('cure_squad');
+  LocalStorage storage = new LocalStorage('health_iot');
 
   getDraw({BuildContext context, User user}) {
     return Drawer(

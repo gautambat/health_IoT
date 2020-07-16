@@ -2,10 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mobx/mobx.dart';
-import 'package:remote_care/constants/constants.dart';
-import 'package:remote_care/service/firebase_auth_service.dart';
-import 'package:remote_care/utils/store_mixin.dart';
-import 'package:remote_care/utils/utils.dart';
+import 'package:health_iot/constants/constants.dart';
+import 'package:health_iot/service/firebase_auth_service.dart';
+import 'package:health_iot/utils/store_mixin.dart';
+import 'package:health_iot/utils/utils.dart';
 
 part 'otp_verification_store.g.dart';
 

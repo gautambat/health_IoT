@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:remote_care/constants/constants.dart';
-import 'package:remote_care/screens/main/base_state.dart';
-import 'package:remote_care/store/authentication/otp_verification_store.dart';
-import 'package:remote_care/widgets/custom_button.dart';
-import 'package:remote_care/widgets/otp_text_field.dart';
+import 'package:health_iot/constants/constants.dart';
+import 'package:health_iot/screens/main/base_state.dart';
+import 'package:health_iot/store/authentication/otp_verification_store.dart';
+import 'package:health_iot/widgets/custom_button.dart';
+import 'package:health_iot/widgets/otp_text_field.dart';
 
 class OTPVerificationScreen extends StatefulWidget {
 

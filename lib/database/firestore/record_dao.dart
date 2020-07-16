@@ -1,10 +1,10 @@
 
 import 'package:flutter/cupertino.dart';
-import 'package:remote_care/constants/constants.dart';
-import 'package:remote_care/models/bp_record.dart';
-import 'package:remote_care/models/pulse_record.dart';
-import 'package:remote_care/models/spo2_record.dart';
-import 'package:remote_care/models/temp_record.dart';
+import 'package:health_iot/constants/constants.dart';
+import 'package:health_iot/models/bp_record.dart';
+import 'package:health_iot/models/pulse_record.dart';
+import 'package:health_iot/models/spo2_record.dart';
+import 'package:health_iot/models/temp_record.dart';
 
 import '../../service/firestore_path.dart';
 import '../../service/firestore_service.dart';

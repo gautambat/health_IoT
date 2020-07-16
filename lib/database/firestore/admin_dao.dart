@@ -1,4 +1,4 @@
-import 'package:remote_care/models/admin.dart';
+import 'package:health_iot/models/admin.dart';
 
 import '../../service/firestore_path.dart';
 import '../../service/firestore_service.dart';

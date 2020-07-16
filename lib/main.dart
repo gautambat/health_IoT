@@ -10,10 +10,10 @@ import 'package:flutter/services.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:logging/logging.dart';
 import 'package:provider/provider.dart';
-import 'package:remote_care/models/role.dart';
-import 'package:remote_care/models/user.dart';
-import 'package:remote_care/screens/authentication/auth_widget.dart';
-import 'package:remote_care/service/firebase_auth_service.dart';
+import 'package:health_iot/models/role.dart';
+import 'package:health_iot/models/user.dart';
+import 'package:health_iot/screens/authentication/auth_widget.dart';
+import 'package:health_iot/service/firebase_auth_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'constants/constants.dart';
@@ -64,7 +64,7 @@ class CureSquadApp extends StatefulWidget {
 }
 
 class _CureSquadAppState extends State<CureSquadApp> {
-  final LocalStorage storage = new LocalStorage('cure_squad');
+  final LocalStorage storage = new LocalStorage('health_iot');
 
   String role;
 
