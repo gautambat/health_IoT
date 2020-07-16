@@ -111,7 +111,6 @@ class _AdminDashBoardScreenState extends BaseState<AdminDashBoardScreen> {
                                   stream: UserDao().collectionStremUsers(),
                                   builder: (context,snapshot){
                                     if(snapshot.hasData){
-;
                                       allUsersList = snapshot.data;
                                       print(allUsersList.toList());
                                       if(allUsersList.length>0)
@@ -291,16 +290,15 @@ class _AdminDashBoardScreenState extends BaseState<AdminDashBoardScreen> {
   Future<void> selectedPatient(patientUser) async {
 
 
-  //if(await Utils.instance.isInternetConnected() ){
+
     store.showProgress(context);
     User selectedPatientUser;
 
-    log(patientUser.uId);
     selectedPatientUser = await UserDao(uid: patientUser.uId).getUser();
     if(selectedPatientUser!=null)
     {
       store.hideProgress(context);
-      push(HomeScreen(user: patientUser, currentIndex: 0,));
+      push(HomeScreen(user: patientUser));
 
 
 

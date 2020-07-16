@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:remote_care/constants/constants.dart';
 import 'package:remote_care/models/user.dart';
 
+// ignore: non_constant_identifier_names
 Widget PatientDrawer(BuildContext context, User user) {
   return patientDetailsDrawerLayout(user);
 }

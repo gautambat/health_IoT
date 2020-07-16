@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:logging/logging.dart';
 import 'package:progress_dialog/progress_dialog.dart';
 import 'package:remote_care/constants/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,10 +8,7 @@ mixin CommonMixin {
 
   BuildContext getContext();
 
-  ///logs a [message] on the Log console
-  log(message){
-    Logger("RemoteCare").log(Level.INFO, message);
-  }
+
 
   /// displays a toast with [message] provided with default [duration] short and [gravity] bottom.
   showToast({@required message, duration: 1,gravity: 0}) => Toast.show(

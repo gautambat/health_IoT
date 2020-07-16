@@ -61,7 +61,7 @@ class _PatientProfileScreenState extends BaseState<PatientProfileScreen> {
     store.dateOfBirthText = currentUser.date ?? null;
     store.dobController.text = currentUser.date ?? null;
     init();
-    //store.relationshipController.text = user[0].emergency.relationship ?? null;
+    super.initState();
   }
 
   @override

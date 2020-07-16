@@ -10,12 +10,12 @@ import 'package:remote_care/models/user.dart';
 import 'package:remote_care/screens/authentication/patient_registration_screen.dart';
 import 'package:remote_care/screens/authentication/signup_login_screen.dart';
 import 'package:remote_care/screens/dashboard/admin_dashboard_screen.dart';
-import 'package:remote_care/utils/utils.dart';
 import 'package:remote_care/widgets/default_margin.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../dashboard/home_screen.dart';
 
+// ignore: must_be_immutable
 class AuthWidget extends StatelessWidget {
   var role;
   String platformAppStoreUrl;
@@ -107,19 +107,8 @@ class AuthWidget extends StatelessWidget {
     return null;
   }
 
-  Future<Admin> getAdmin(uId) async {
-    Admin admin = await AdminDao(uid: uId).getAdmin();
-
-  }
 
   initPatient(user) async {
-    var pushToken = await Utils.instance.getPushToken();
-    OtherInfoBean otherInfo = OtherInfoBean();
-    otherInfo
-      ..pushToken = pushToken;
-      //..deviceId = deviceId;
-    user.otherInfo = otherInfo;
-    //log("User Details:before write "+user.toJson().toString());
     return await UserDao(uid: user.uId).createUser(user).then((value) {
       return UserDao().user(uid: user.uId);
     }).then((value) => value);

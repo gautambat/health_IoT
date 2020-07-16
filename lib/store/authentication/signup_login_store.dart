@@ -73,11 +73,10 @@ abstract class SignUpLoginStoreBase with Store, StoreMixin {
       return;
     }
     else if(currentSelectedRole == Constants.ADMIN) {
-      print(6);
-      //print(adminList);
+
       int i, cond = 0;
       for(i = 0; i < adminList.length; i++) {
-        //print(adminList[i].mobile);
+
         if(adminList[i].mobile == '+91'+phoneNumberController.text) {
           cond = 1;
           break;
@@ -93,47 +92,22 @@ abstract class SignUpLoginStoreBase with Store, StoreMixin {
       }
     }
     else if (!isLoginScreen) {
-      print(7);
+
       showProgress(context);
       sendOTP(mobileNumber, onCodeSent, onError);
-      /*await UserDao().getUserByMobile(mobileNumber).then((value) {
-        if (value.length > 0) {
-          hideProgress(context);
-          errorMessage = ErrorMessages.MOBILE_EXIST;
-        } else {
-          //print("user not exist");
-          sendOTP(mobileNumber, onCodeSent, onError);
-        }
-      });*/
+
     } else {
-      print(8);
+
       if(await Utils.instance.isInternetConnected() ){
-      //  if (Constants.IS_DOCTOR) {
+
         if (Constants.ADMIN==currentSelectedRole || Constants.PATIENT==currentSelectedRole) {
-          print(9);
-          //doctor login
-          var mobileNumberCheck = selectedCountryCode + phoneNumberController.text;
           sendOTP(mobileNumber, onCodeSent, onError);
 
-//          await DoctorDao().getUserDoctorByMobile(mobileNumberCheck).then((value) {
-//
-//            if (value.length > 0) {
-//              hideProgress();
-//              sendOTP(mobileNumber, onCodeSent, onError);
-//
-//            } else {
-//              //print("user not exist");
-//              hideProgress();
-//              errorMessage = ErrorMessages.MOBILE_NOT_EXIST;
-//            }
-//          });
+
         }
         else
           {
-//            Navigator.push(
-//              context,
-//              MaterialPageRoute(builder: (context) => AccountScreen()),
-//            );
+
           }
       }
       else{

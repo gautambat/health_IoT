@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:remote_care/models/admin.dart';
 
 import '../../service/firestore_path.dart';

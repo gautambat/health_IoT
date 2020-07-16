@@ -145,13 +145,6 @@ abstract class PatientRegistrationStoreBase with Store, StoreMixin {
         ..imageUrl = imageUrl
         ..createdOn = Timestamp.now();
 
-      var pushToken = await Utils.instance.getPushToken();
-      OtherInfoBean otherInfo = OtherInfoBean();
-
-      otherInfo
-        ..pushToken = pushToken;
-
-      currentUser.otherInfo = otherInfo;
       await UserDao(uid: currentUser.uId).createUser(currentUser).then((value) {
         Provider<User>.value(value: currentUser);
         push(HomeScreen(user: currentUser,));
@@ -185,10 +178,10 @@ abstract class PatientRegistrationStoreBase with Store, StoreMixin {
   @action
   Future getImage(String uid, BuildContext context) async {
     if(await Utils.instance.isInternetConnected() == true) {
+      // ignore: deprecated_member_use
       image = (await ImagePicker.pickImage(source: ImageSource.gallery));
       if (image != null) {
         showProgress(context);
-        //image = await cropImage(image);
         image = await compressImage(image);
         await uploadUserImages(image, uid, context);
       }

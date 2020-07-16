@@ -12,7 +12,6 @@ import 'package:remote_care/models/temp_record.dart';
 import 'package:remote_care/models/user.dart';
 import 'package:remote_care/screens/main/base_state.dart';
 import 'package:remote_care/store/dashboard/patient_readings_store.dart';
-import 'package:remote_care/utils/utils.dart';
 import 'package:remote_care/widgets/custom_button.dart';
 
 class PatientReadingValuesScreen extends StatefulWidget {
@@ -55,11 +54,9 @@ class _PatientReadingValuesScreenState
 
   String uid;
   int clickedValue;
-  TabController _tabController;
 
   int selectedTab;
 
-  String Imei="";
   User user;
 
   @override
@@ -90,7 +87,7 @@ class _PatientReadingValuesScreenState
       onPressed: () {
         pop();
       },
-    ),);
+    ), widgets: null,);
   }
 
   @override
@@ -142,7 +139,8 @@ class _PatientReadingValuesScreenState
                               ? AppColors.accentText
                               : AppColors.secondaryBackground,
                           onPressed: () {
-                            store.notEmptyPulse ? store.pulseClicked(uid,context) : "";
+                            // ignore: unnecessary_statements
+                            store.notEmptyPulse ? store.pulseClicked(uid,context) : {};
                             hideKeyboard();
                           },
                         )
@@ -178,6 +176,7 @@ class _PatientReadingValuesScreenState
                           color: (!store.emptyBp || !store.empty1Bp)? AppColors.accentText : AppColors
                               .secondaryBackground,
                           onPressed: () {
+                            // ignore: unnecessary_statements
                             (store.emptyBp &&store.empty1Bp) ? store.bpSaveClicked(uid,context) : "";
                             hideKeyboard();
                           },
@@ -224,6 +223,7 @@ class _PatientReadingValuesScreenState
                                 color: !store.emptySpo2 ? AppColors.accentText : AppColors
                                     .secondaryBackground,
                                 onPressed: () {
+                                  // ignore: unnecessary_statements
                                   store.emptySpo2 ? store.spo2Clicked(uid,context) : "";
                                   hideKeyboard();
                                 },
@@ -256,6 +256,7 @@ class _PatientReadingValuesScreenState
                               ? AppColors.accentText
                               : AppColors.secondaryBackground,
                           onPressed: () {
+                            // ignore: unnecessary_statements
                             store.emptyTemp ? store.tempClicked(uid,context) : "";
                             hideKeyboard();
                           },
@@ -420,7 +421,7 @@ class _PatientReadingValuesScreenState
   Future<void> locationEnabled() async {
     Location location = new Location();
 
-    bool ss= await location.serviceEnabled();
+    await location.serviceEnabled();
     bool locationEnable = await location.requestService();
     var loc = await location.requestPermission();
     if(loc == PermissionStatus.granted){

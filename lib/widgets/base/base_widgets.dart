@@ -157,7 +157,9 @@ mixin BaseWidgets {
   }
 
   getEmptyState({Widget action, @required String errorMessage, @required errorTitle}) {
+    // ignore: unnecessary_statements
     errorMessage == null ? errorMessage = 'Seems like there are no values yet' : null;
+    // ignore: unnecessary_statements
     errorTitle == null ? errorTitle = 'No Readings Added' : null;
     return Container(
       child: Column(

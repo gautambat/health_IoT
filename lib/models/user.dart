@@ -16,7 +16,6 @@ class User {
   num height;
   Timestamp createdOn;
   Timestamp updatedOn;
-  OtherInfoBean otherInfo;
 
    factory User.fromMap(Map<String, dynamic> json) {
      if(json==null)
@@ -36,13 +35,12 @@ class User {
     ..updatedOn = json['updatedOn']
     ..isRegistered = json['isRegistered']??false
     ..weight = json['weight']
-    ..height = json['height']
-    ..otherInfo = json['otherInfo'] != null ? OtherInfoBean.fromJson(json['otherInfo']) : null;
+    ..height = json['height'];
 
     return user;
   }
 
-  User({this.pId, this.uId, this.name, this.firstName, this.lastName, this.gender, this.mobile, this.dob, this.isRegistered=false, this.weight, this.height, this.otherInfo, this.imageUrl, this.date, this.createdOn, this.updatedOn});
+  User({this.pId, this.uId, this.name, this.firstName, this.lastName, this.gender, this.mobile, this.dob, this.isRegistered=false, this.weight, this.height, this.imageUrl, this.date, this.createdOn, this.updatedOn});
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -61,35 +59,8 @@ class User {
     data['height'] = this.height;
     data['createdOn'] = this.createdOn;
     data['updatedOn'] = this.updatedOn;
-    if (this.otherInfo != null) {
-      data['otherInfo'] = this.otherInfo.toJson();
-    }
     return data;
   }
 
 }
 
-class OtherInfoBean {
-  String facilityId;
-  String region;
-  String deviceId;
-  String pushToken;
-
-  OtherInfoBean({this.facilityId, this.region, this.deviceId, this.pushToken});
-
-  OtherInfoBean.fromJson(Map<String, dynamic> json) {    
-    this.facilityId = json['facilityId'];
-    this.region = json['region'];
-    this.deviceId = json['deviceId'];
-    this.pushToken = json['pushToken'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['facilityId'] = this.facilityId;
-    data['region'] = this.region;
-    data['deviceId'] = this.deviceId;
-    data['pushToken'] = this.pushToken;
-    return data;
-  }
-}

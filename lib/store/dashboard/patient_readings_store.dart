@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,14 +7,12 @@ import 'package:flutter/services.dart';
 import 'package:mobx/mobx.dart';
 import 'package:remote_care/constants/constants.dart';
 import 'package:remote_care/database/firestore/record_dao.dart';
-import 'package:remote_care/database/firestore/user_dao.dart';
 import 'package:remote_care/models/bp_record.dart';
 import 'package:remote_care/models/pulse_record.dart';
 import 'package:remote_care/models/spo2_record.dart';
 import 'package:remote_care/models/temp_record.dart';
 import 'package:remote_care/models/user.dart';
 import 'package:remote_care/utils/store_mixin.dart';
-import 'package:remote_care/utils/utils.dart';
 
 part 'patient_readings_store.g.dart';
 
@@ -157,12 +154,7 @@ spo2Changed() {
     emptyBp = false;
     empty1Bp = false;
 
-    int bpValue = int.parse(bpController.text);
 
-
-
-
-      int bpDiaValue = int.parse(bpDiaController.text);
 
 
 
@@ -172,7 +164,6 @@ spo2Changed() {
         bpRecord.sys = num.parse(bpController.text);
         bpRecord.dia = num.parse(bpDiaController.text);
         bpRecord.isManual = true;
-        bpRecord.deviceId = deviceId;
         bpRecord.recordedTime = Timestamp.now();
         await RecordDao(uid: userId).addBPRecord(bpRecord).then((value) {
           saveShowDlg(ErrorMessages.BP_DETAILS_SAVED, context);
@@ -193,7 +184,7 @@ spo2Changed() {
     String userId= user.uId;
 
     emptySpo2 = false;
-    int spo2Value = int.parse(spo2Controller.text);
+
 
 
 
@@ -204,7 +195,6 @@ spo2Changed() {
       spo2Record.spo2 = num.parse(spo2Controller.text);
       spo2Record.recordedTime = Timestamp.now();
       spo2Record.isManual = true;
-      spo2Record.deviceId = deviceId;
       await RecordDao(uid: userId).addSpo2Record(spo2Record).then((value) {
         spo2Controller.text="";
 
@@ -235,17 +225,16 @@ spo2Changed() {
     emptyTemp = false;
 
 
-    double tempDoubleValue = double.parse(tempController.text);
-    int tempValue = tempDoubleValue.toInt();
+
+
 
 
       TempRecord tempRecord = new TempRecord();
 
       tempRecord.isManual = true;
-      tempRecord.deviceId = deviceId;
       tempRecord.temp = num.parse(tempController.text);
       tempRecord.recordedTime = Timestamp.now();
-      await RecordDao(uid: userId).addTempRecord(tempRecord).then((Value) {
+      await RecordDao(uid: userId).addTempRecord(tempRecord).then((value) {
         saveShowDlg(ErrorMessages.TEMP_DETAILS_SAVED, context);
 
 
@@ -263,7 +252,6 @@ spo2Changed() {
 
 @action
 Future<void> deviceValuesReading(int selectedTab, BuildContext context) async {
-    String response = "";
     if (selectedTab == 0) {
       //BP
       /*try {
@@ -290,7 +278,6 @@ Future<void> deviceValuesReading(int selectedTab, BuildContext context) async {
 
         }
       }  catch (e) {
-        response = "Failed to Invoke: '${e.message}'.";
       }
     }
     else if (selectedTab ==2) {
@@ -308,7 +295,6 @@ Future<void> deviceValuesReading(int selectedTab, BuildContext context) async {
     else  {
       try {
         final String result = await platform.invokeMethod('fromSp');
-        response = result;
         if(result!=null) {
           var parsedJson = json.decode(result.toString());
 
@@ -320,7 +306,6 @@ Future<void> deviceValuesReading(int selectedTab, BuildContext context) async {
 
         }
       }  catch (e) {
-        response = "Failed to Invoke: '${e.message}'.";
       }
     }
 
@@ -348,8 +333,6 @@ Future<void> deviceValuesReading(int selectedTab, BuildContext context) async {
 
       pulseRecord.pulse = num.parse(text);
       pulseRecord.recordedTime = Timestamp.now();
-      //pulseRecord.pulseRange = rangeValue;
-      pulseRecord.deviceId = deviceId;
 
       if(!fromPulseReading)
       pulseRecord.isManual = true;

@@ -204,20 +204,13 @@ class Labels {
   static const FIRST_NAME = 'First Name';
   static const LAST_NAME = 'Last Name';
   static const PHONE_NUMBER = 'Phone Number';
-  static const PULSEHINT = 'Pulse (min)';
-  static const GLUCOSEHINTBEFORE = 'Before Meal(Ml/OL)';
-  static const GLUCOSEHINTAFTER = 'After Meal(Ml/OL)';
-  static const WEIGHTHINT = 'Weight(kg)';
+  static const PULSEHINT = 'Pulse(bpm)';
   static const TEMPHINT = 'Temparature( \u2109)';
   static const BPSYS = 'BP Systolic(mmHg)';
   static const BPDIA = 'BP Diastolic(mmHg)';
-  static const SPO2HINT = 'SpO2 Level(%)';
+  static const SPO2HINT = 'SpO2(%)';
   static const PATIENT_ID = 'Patient ID';
   static const DOB = 'Date of Birth';
-  static const ADDRESS = 'Address';
-  static const CITY = 'City';
-  static const STATE = 'State';
-  static const ZIP = 'Zip Code';
   static const HEIGHT = 'Height';
 
 }
@@ -262,7 +255,6 @@ class ErrorMessages{
   static const No_READINGS_SUBTITLE ="Seems like you've not added any readings yet";
   static const PATIENT_DETAILS_NOT_Found ="Patients details not found";
   static const OPTION = 'Please select an Option';
-  static const INVALID_ZIP = 'Enter a valid ZipCode';
   static const OTP_RESEND = 'OTP has been successfully resent.';
   static const NO_INTERNET_CONNECTION = "No internet Connection";
 
@@ -278,7 +270,7 @@ class ErrorMessages{
 class TabTitle{
   static const PULSE = 'Pulse';
   static const BP = 'BP';
-  static const SPO2 = 'SPO2';
+  static const SPO2 = 'SpO2';
   static const TEMP = 'Temp';
   static const WEIGHT = 'Weight';
 }

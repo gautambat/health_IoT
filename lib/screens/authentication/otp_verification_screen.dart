@@ -34,7 +34,7 @@ class _OTPVerificationScreenState extends BaseState<OTPVerificationScreen> {
     return getAppBarWidgets(title:Titles.VERIFY_OTP_TITLE,leftWidget:  InkWell(
     onTap: () {
       pop();
-    },child:Icon(Icons.arrow_back, color: AppColors.white,)));
+    },child:Icon(Icons.arrow_back, color: AppColors.white,)), widgets: null);
   }
 
   @override

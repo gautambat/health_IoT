@@ -1,7 +1,6 @@
 import 'dart:async';
 
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -39,6 +38,7 @@ void main(){
   ]).then((_) async{
     runZoned<Future<void>>(() async {
       runApp(CureSquadApp(authServiceBuilder: (_) => FirebaseAuthService()));
+    // ignore: deprecated_member_use
     }, onError: Crashlytics.instance.recordError);
     //runApp(MyApp());
   });
@@ -70,6 +70,7 @@ class _CureSquadAppState extends State<CureSquadApp> {
 
   var roleChecking;
 
+  // ignore: non_constant_identifier_names
   bool is_doctor = false;
 
   int updateType;

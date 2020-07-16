@@ -13,6 +13,7 @@ import 'package:remote_care/widgets/base/base_widgets.dart';
 import '../../widgets/base/base_widgets.dart';
 
 
+// ignore: must_be_immutable
 class PatientRegistrationScreen extends StatefulWidget {
   bool addPatient =false;
   PatientRegistrationScreen({this.addPatient});
@@ -58,7 +59,6 @@ class _PatientRegistrationScreenState extends BaseState<PatientRegistrationScree
       InkWell(
           onTap: () {
             if (_formkey.currentState.validate()) {
-              log("form validated.");
             }
           },
           child: Observer(

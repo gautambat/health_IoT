@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:remote_care/constants/constants.dart';
 import 'package:remote_care/models/user.dart';
 import 'package:remote_care/screens/dashboard/dashboard_screen.dart';
 import 'package:remote_care/screens/main/base_state.dart';
@@ -8,10 +7,10 @@ import 'package:remote_care/widgets/default_margin.dart';
 
 import 'dashboard_screen.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
   final User user;
-  int currentIndex;
-  HomeScreen({Key key,@required this.user,this.currentIndex}) : super(key: key);
+  HomeScreen({Key key,@required this.user}) : super(key: key);
 
   @override
   _HomeScreenState createState() {
@@ -19,19 +18,10 @@ class HomeScreen extends StatefulWidget {
   }
 }
 
-class _HomeScreenState extends BaseState<HomeScreen> {//with TickerProviderStateMixin {
+class _HomeScreenState extends BaseState<HomeScreen> {
 
-  int _currentIndex;
-  
-  
-  
   @override
   getAppBar() => getEmptyAppBar();
-
-  @override
-  void initState() {
-    _currentIndex = widget.currentIndex ?? 0;
-  }
 
   @override
   withDefaultMargins() => false;

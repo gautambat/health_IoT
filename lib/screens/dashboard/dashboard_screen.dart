@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:double_back_to_close_app/double_back_to_close_app.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:jiffy/jiffy.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:remote_care/constants/constants.dart';
 import 'package:remote_care/database/firestore/record_dao.dart';
@@ -61,15 +60,9 @@ class _DashboardScreenState extends BaseState<DashboardScreen> {
   }
 
   initPatient() async {
-    pushToken = await getPushToken();
-    OtherInfoBean otherInfo = OtherInfoBean();
-    otherInfo
-      ..pushToken = pushToken
-      ..deviceId = deviceId;
-    user.otherInfo = otherInfo;
     await UserDao(uid: user.uId)
         .createUser(user)
-        .then((value) => log("Successfully updated"));
+        .then((value) => print("Successfully updated"));
   }
 
   @override
@@ -532,14 +525,12 @@ class _DashboardScreenState extends BaseState<DashboardScreen> {
           userRecords[0].dob.millisecondsSinceEpoch);
 
       //String birthdayString = Jiffy.unix(userRecords[0].dob.millisecondsSinceEpoch).format('dd/MM•HH.mm');
-      var presntTime = Timestamp.now();
+      var presentTime = Timestamp.now();
       final DateTime timeStampNow = DateTime.fromMillisecondsSinceEpoch(
-          presntTime.millisecondsSinceEpoch);
+          presentTime.millisecondsSinceEpoch);
 
       Duration dur = timeStampNow.difference(dobTimeStamp);
       differenceInYears = (dur.inDays / 365).floor().toString();
-      log(differenceInYears);
-      log(differenceInYears + "Date of birth");
     }
   }
 
