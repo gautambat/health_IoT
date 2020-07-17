@@ -41,18 +41,18 @@ mixin _$PatientReadingsStore on PatientReadingsStoreBase, Store {
     });
   }
 
-  final _$deviceIdAtom = Atom(name: 'PatientReadingsStoreBase.deviceId');
+  final _$manualAtom = Atom(name: 'PatientReadingsStoreBase.manual');
 
   @override
-  String get deviceId {
-    _$deviceIdAtom.reportRead();
-    return super.deviceId;
+  bool get manual {
+    _$manualAtom.reportRead();
+    return super.manual;
   }
 
   @override
-  set deviceId(String value) {
-    _$deviceIdAtom.reportWrite(value, super.deviceId, () {
-      super.deviceId = value;
+  set manual(bool value) {
+    _$manualAtom.reportWrite(value, super.manual, () {
+      super.manual = value;
     });
   }
 
@@ -319,33 +319,11 @@ mixin _$PatientReadingsStore on PatientReadingsStoreBase, Store {
   }
 
   @override
-  dynamic onPulseChanged() {
+  dynamic onPulseChanged(bool isManual) {
     final _$actionInfo = _$PatientReadingsStoreBaseActionController.startAction(
         name: 'PatientReadingsStoreBase.onPulseChanged');
     try {
-      return super.onPulseChanged();
-    } finally {
-      _$PatientReadingsStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic onPulseFromDeviceChanged() {
-    final _$actionInfo = _$PatientReadingsStoreBaseActionController.startAction(
-        name: 'PatientReadingsStoreBase.onPulseFromDeviceChanged');
-    try {
-      return super.onPulseFromDeviceChanged();
-    } finally {
-      _$PatientReadingsStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic onSpo2FromDeviceChanged() {
-    final _$actionInfo = _$PatientReadingsStoreBaseActionController.startAction(
-        name: 'PatientReadingsStoreBase.onSpo2FromDeviceChanged');
-    try {
-      return super.onSpo2FromDeviceChanged();
+      return super.onPulseChanged(isManual);
     } finally {
       _$PatientReadingsStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -363,11 +341,11 @@ mixin _$PatientReadingsStore on PatientReadingsStoreBase, Store {
   }
 
   @override
-  dynamic spo2Changed() {
+  dynamic spo2Changed(bool isManual) {
     final _$actionInfo = _$PatientReadingsStoreBaseActionController.startAction(
         name: 'PatientReadingsStoreBase.spo2Changed');
     try {
-      return super.spo2Changed();
+      return super.spo2Changed(isManual);
     } finally {
       _$PatientReadingsStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -389,7 +367,7 @@ mixin _$PatientReadingsStore on PatientReadingsStoreBase, Store {
     return '''
 fromPulseReading: ${fromPulseReading},
 fromSpo2Reading: ${fromSpo2Reading},
-deviceId: ${deviceId},
+manual: ${manual},
 user: ${user},
 bpController: ${bpController},
 bpDiaController: ${bpDiaController},

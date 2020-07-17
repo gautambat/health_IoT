@@ -105,32 +105,9 @@ class _PatientReadingValuesScreenState
         builder: (_) => Column(
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
-                Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: <Widget>[
-
-                      getTextField(label:Labels.PULSEHINT, controller:store.pulseController, type:TextInputType.phone,formatters:inputFormatters,onChange: (value){
-                        store.onPulseChanged();
-                      }),
-                      Visibility(
-                          visible: store.notEmptyFromDeviceSpo2,
-                          child:Container(
-                            margin: EdgeInsets.all(20.0),
-                            decoration: BoxDecoration(
-                              color: AppColors.homeScreenBackground,
-                              border: Border.fromBorderSide(
-                                  Borders.primaryBorder),
-                              borderRadius: Radii.k4pxRadius,
-                            ),
-                            height: 60.0,
-                            child: getTextField(label:Labels.SPO2HINT, controller:store.spo2FromDeviceController, type:TextInputType.number,onChange: (value){
-                              store.onSpo2FromDeviceChanged();
-                            }),)),
-
-
-
-
-                    ]),
+                getTextField(label:Labels.PULSEHINT, controller:store.pulseController, type:TextInputType.phone,formatters:inputFormatters,onChange: (value){
+                  store.onPulseChanged(true);
+                }),
         Flexible(child:Align(
           alignment: Alignment.bottomCenter,
           child:  CustomButton(
@@ -191,30 +168,9 @@ class _PatientReadingValuesScreenState
               mainAxisSize: MainAxisSize.max,
               children: <Widget>[
 
-                Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: <Widget>[
-
-                      getTextField(label:Labels.SPO2HINT, controller:store.spo2Controller, type:TextInputType.number,formatters:inputFormatters,onChange: (value){
-                        store.spo2Changed();
-                      }),
-
-
-                     Visibility(
-                         visible: store.notEmptyFromDevicePulse,
-                         child:Container(
-                          margin: EdgeInsets.all(20.0),
-                          decoration: BoxDecoration(
-                            color: AppColors.homeScreenBackground,
-                            border: Border.fromBorderSide(
-                                Borders.primaryBorder),
-                            borderRadius: Radii.k4pxRadius,
-                          ),
-                          height: 60.0,
-                          child: getTextField(label:Labels.PULSEHINT, controller:store.pulseFromDeviceController, type:TextInputType.number,onChange: (value){
-                            store.onPulseFromDeviceChanged();
-                          }),)),
-                    ]),
+                getTextField(label:Labels.SPO2HINT, controller:store.spo2Controller, type:TextInputType.number,formatters:inputFormatters,onChange: (value){
+                  store.spo2Changed(true);
+                }),
         Flexible(child:Align(
             alignment: Alignment.bottomCenter,
             child: Observer(

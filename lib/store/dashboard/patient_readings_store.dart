@@ -35,7 +35,7 @@ abstract class PatientReadingsStoreBase with Store, StoreMixin {
   Constants constant = new Constants();
 
   @observable
-  String deviceId;
+  bool manual;
   @observable
   User user;
   @observable
@@ -44,7 +44,7 @@ abstract class PatientReadingsStoreBase with Store, StoreMixin {
   TextEditingController bpDiaController = new TextEditingController();
   @observable
   TextEditingController spo2Controller = new TextEditingController();
-  TextEditingController spo2FromDeviceController = new TextEditingController();
+  //TextEditingController spo2FromDeviceController = new TextEditingController();
   @observable
   TextEditingController tempController = new TextEditingController();
   @observable
@@ -63,7 +63,7 @@ abstract class PatientReadingsStoreBase with Store, StoreMixin {
   bool notEmptyFromDeviceSpo2 = false;
   @observable
   var pulseController = new TextEditingController();
-  var pulseFromDeviceController = new TextEditingController();
+  //var pulseFromDeviceController = new TextEditingController();
 
   @action
   setUser(user){
@@ -75,14 +75,18 @@ abstract class PatientReadingsStoreBase with Store, StoreMixin {
   }
 
   @action
-  onPulseChanged() {
-    if (pulseController.text.isNotEmpty)
+  onPulseChanged(bool isManual) {
+    if (pulseController.text.isNotEmpty) {
       notEmptyPulse = true;
+      manual = isManual;
+    }
+
+
     else
       notEmptyPulse = false;
   }
 
-  @action
+  /*@action
   onPulseFromDeviceChanged() {
     if (pulseFromDeviceController.text.isNotEmpty)
       notEmptyFromDevicePulse = true;
@@ -96,7 +100,7 @@ abstract class PatientReadingsStoreBase with Store, StoreMixin {
       notEmptyFromDeviceSpo2 = true;
     else
       notEmptyFromDeviceSpo2 = false;
-  }
+  }*/
 
   @action
   onBpChanged() {
@@ -116,9 +120,10 @@ abstract class PatientReadingsStoreBase with Store, StoreMixin {
     }
   }
 @action
-spo2Changed() {
+spo2Changed(bool isManual) {
   if (spo2Controller.text.isNotEmpty) {
     emptySpo2 = true;
+    manual = isManual;
   }
   else {
     emptySpo2 = false;
@@ -140,7 +145,7 @@ spo2Changed() {
     notEmptyPulse = false;
 
 
-    pulseSaved(pulseValue,pulseController.text,context,false);
+    pulseSaved(pulseValue,pulseController.text,context,manual);
 
 
 
@@ -194,12 +199,13 @@ spo2Changed() {
 
       spo2Record.spo2 = num.parse(spo2Controller.text);
       spo2Record.recordedTime = Timestamp.now();
-      spo2Record.isManual = true;
+      spo2Record.isManual = manual;
       await RecordDao(uid: userId).addSpo2Record(spo2Record).then((value) {
         spo2Controller.text="";
+        saveShowDlg(ErrorMessages.SPO2_DETAILS_SAVED, context);
 
 
-        if(fromPulseReading && notEmptyFromDevicePulse){
+        /*if(fromPulseReading && notEmptyFromDevicePulse){
 
           int pulseValue = int.parse(pulseFromDeviceController.text);
           notEmptyFromDevicePulse = false;
@@ -211,7 +217,7 @@ spo2Changed() {
           saveShowDlg(ErrorMessages.SPO2_DETAILS_SAVED, context);
 
 
-        }
+        }*/
 
 
       });
@@ -274,7 +280,7 @@ Future<void> deviceValuesReading(int selectedTab, BuildContext context) async {
             spo2Controller.text = spo2record.spo2.toString();
 
           if(spo2Controller.text.isNotEmpty)
-            spo2Changed();
+            spo2Changed(false);
 
         }
       }  catch (e) {
@@ -302,7 +308,7 @@ Future<void> deviceValuesReading(int selectedTab, BuildContext context) async {
           var pulserecord = PulseRecord.fromMap(data: parsedJson);
           pulseController.text = pulserecord.pulse.toString();
           if(pulseController.text.isNotEmpty)
-            onPulseChanged();
+            onPulseChanged(false);
 
         }
       }  catch (e) {
@@ -327,17 +333,14 @@ Future<void> deviceValuesReading(int selectedTab, BuildContext context) async {
       type = TabTitle.SPO2;
   }
 
-  Future<void> pulseSaved(int pulseValue, text, BuildContext context, bool fromDevicePulse) async {
+  Future<void> pulseSaved(int pulseValue, text, BuildContext context, bool manual) async {
 
       PulseRecord pulseRecord = new PulseRecord();
 
       pulseRecord.pulse = num.parse(text);
       pulseRecord.recordedTime = Timestamp.now();
+      pulseRecord.isManual = manual;
 
-      if(!fromPulseReading)
-      pulseRecord.isManual = true;
-      else
-        pulseRecord.isManual = false;
       await RecordDao(uid: user.uId).addPulseRecord(pulseRecord).then((value) {
         pulseController.text="";
         saveShowDlg(ErrorMessages.PULSE_DETAILS_SAVED, context);
